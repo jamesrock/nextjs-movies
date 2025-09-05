@@ -113,8 +113,11 @@ a {
   gap: 10px;
   overflow-x: scroll;
   margin-top: 40px;
+  
   .film {
     width: 200px;
     flex-shrink: 0;
+    text-decoration: none;
   }
+
 }

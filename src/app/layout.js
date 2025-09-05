@@ -1,9 +1,10 @@
-import { Geist } from "next/font/google";
-import "./globals.scss?8";
+import { Poppins } from "next/font/google";
+import "./globals.scss?1";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const fontFace = Poppins({
   subsets: ["latin"],
+  weight: ['400', '500', '600', '700'],
+  style: ['italic', 'normal']
 });
 
 export const metadata = {
@@ -14,7 +15,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable}`}>
+      <body className={`${fontFace.className}`}>
         {children}
       </body>
     </html>
