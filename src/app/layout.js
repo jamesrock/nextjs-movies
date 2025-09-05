@@ -1,5 +1,5 @@
 import { Poppins } from "next/font/google";
-import "./globals.scss?1";
+import "./globals.scss?222222";
 
 const fontFace = Poppins({
   subsets: ["latin"],

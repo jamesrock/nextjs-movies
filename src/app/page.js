@@ -1,23 +1,13 @@
-import Link from 'next/link'
-import {base, getRatingClass} from './api';
+import Category from './components/Category';
 
 export default async function Home() {
-  const data = await fetch(base + '/titles?types=MOVIE');
-  const films = await data.json();
   return (
     <main>
-      <h1>Latest Releases</h1>
-      <div className="films">
-      {films?.titles.length && films.titles.map((film) => (
-        <Link href={`/film/${film.id}`} className="film" key={film.id}>
-          <img className="poster" src={film.primaryImage.url} />
-          <div>
-            <h3>{film.primaryTitle}</h3>
-            <div className="genres">{film.genres.map((genre) => genre).join(' / ')}</div>
-            <div className={`rating ${getRatingClass(film?.rating?.aggregateRating ?? 0)}`}>{film?.rating?.aggregateRating ?? '-'}</div>
-          </div>
-        </Link>
-      ))}
+      <div className="categories">
+        <Category name="Latest releases" />
+        <Category id="Comedy" name="Comedy" />
+        <Category id="Horror" name="Horror" />
+        <Category id="Family" name="Family" />
       </div>
     </main>
   );

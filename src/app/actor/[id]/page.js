@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import {base} from '@/app/api';
 import Filmography from '@/app/components/Filmography';
 
@@ -14,7 +13,7 @@ export default async function Actor({
       <div className="actor" key={actor.id}>
         <h1>{actor.displayName}</h1>
         <img className="poster" src={actor?.primaryImage?.url} />
-        <p>{actor.biography}</p>
+        <p className="bio">{actor.biography}</p>
         <Filmography id={actor.id} type="actor" />
       </div>
     </main>
