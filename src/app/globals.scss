@@ -1,0 +1,120 @@
+:root {
+  --background: rgb(14, 14, 14);
+  --foreground: white;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: sans-serif;
+  font-size: 18px;
+  padding: 40px 20px;
+  line-height: 1.4;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+main {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+h2 {
+  margin-bottom: 1em;
+}
+
+h3 {
+  font-size: 1em;
+}
+
+a {
+  color: inherit;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.films {
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+
+  .plot {
+    font-size: 16px;
+  }
+
+  .film {
+    display: flex;
+    gap: 20px;
+    text-decoration: none;
+
+    .poster {
+      width: 120px;
+    }
+  }
+
+}
+
+.stars,
+.directors {
+  a {
+    margin-right: 5px;
+    &:not(:last-child):after {
+      content: ",";
+    }
+  }
+}
+
+.rating {
+  font-weight: bold;
+  display: inline-block;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: gray;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5px;
+
+  &.low {
+    background-color: maroon;
+  }
+
+  &.mid {
+    background-color: orange;
+  }
+
+  &.high {
+    background-color: green;
+  }
+
+}
+
+.poster {
+  max-width: 100%;
+}
+
+.filmography {
+  display: flex;
+  gap: 10px;
+  overflow-x: scroll;
+  margin-top: 40px;
+  .film {
+    width: 200px;
+    flex-shrink: 0;
+  }
+}
