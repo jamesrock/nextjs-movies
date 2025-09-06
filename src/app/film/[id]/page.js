@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import {base, toTime, getRatingClass} from '@/app/api';
+import { base, toTime, getRatingClass } from '@/app/api';
 
 export default async function Film({
   params

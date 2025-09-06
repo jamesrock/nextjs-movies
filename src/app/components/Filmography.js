@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import {base} from '@/app/api';
+import { base } from '@/app/api';
 
 export default async function Filmography({
   id,

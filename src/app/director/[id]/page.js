@@ -1,4 +1,4 @@
-import {base} from '@/app/api';
+import { base } from '@/app/api';
 import Filmography from '@/app/components/Filmography';
 
 export default async function Director({
