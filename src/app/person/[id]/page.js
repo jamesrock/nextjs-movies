@@ -12,7 +12,9 @@ export default async function Person({
     <main>
       <div className="person">
         <h1>{person.name}</h1>
-        <img className="poster" src={tmdb_media_base + person.profile_path} />
+        <div className="poster-crop">
+          <img className="poster" src={person.profile_path ? (tmdb_media_base + person.profile_path) : null} />
+        </div>
         <p className="bio">{person.biography}</p>
         <Filmography id={person.id} />
       </div>

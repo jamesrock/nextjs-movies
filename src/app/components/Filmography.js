@@ -1,5 +1,4 @@
-import Link from 'next/link'
-import { fetch_options, tmdb_base, tmdb_media_base } from '@/app/api';
+import { fetch_options, tmdb_base, dedupe } from '@/app/api';
 import Films from './Films';
 
 export default async function Filmography({
@@ -10,8 +9,8 @@ export default async function Filmography({
   console.log(films);
   return (
     <div className="cast-and-crew">
-      {!!films.cast.length && <Films films={films.cast} name="Cast" type="cast" />}
-      {!!films.crew.length && <Films films={films.crew} name="Crew" type="crew" />}
+      {!!films.cast.length && <Films films={dedupe(films.cast, 'cast')} name="Cast" type="cast" />}
+      {!!films.crew.length && <Films films={dedupe(films.crew, 'crew')} name="Crew" type="crew" />}
     </div>
   );
 }

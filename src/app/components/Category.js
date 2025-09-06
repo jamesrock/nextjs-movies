@@ -18,7 +18,7 @@ export default async function Category({
             <img className="poster" src={tmdb_media_base + film.poster_path} />
           </div>
           <div className="desc">
-            <div className="desc-title">{film.title}</div>
+            <div className="desc-name">{film.title}</div>
           </div>
         </Link>
       ))}

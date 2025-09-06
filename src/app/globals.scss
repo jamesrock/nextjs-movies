@@ -87,7 +87,6 @@ a {
   display: block;
 }
 
-.filmography,
 .category {
   width: 100%;
 
@@ -108,14 +107,14 @@ a {
     .desc {
       padding: 5px 0 15px;
       
-      &-title,
+      &-name,
       &-role {
         white-space: nowrap;
         text-overflow: ellipsis;
         overflow: hidden;
       }
 
-      &-title {
+      &-name {
         font-weight: 500;
       }
       
@@ -164,6 +163,7 @@ a {
   height: 0;
   padding-bottom: 148%;
   position: relative;
+  width: 100%;
   img {
     position: absolute;
     object-fit: cover;
@@ -215,5 +215,8 @@ a {
 }
 
 .cast-and-crew {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
   width: 100%;
 }

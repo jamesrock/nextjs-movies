@@ -2,10 +2,9 @@
 
 import Link from 'next/link'
 import { useState } from 'react';
-import { fetch_options, tmdb_base, tmdb_media_base, media_type_name_map, media_type_profile_path } from '@/app/api';
+import { fetch_options, tmdb_base, tmdb_media_base, media_type_name, media_type_profile_path } from '@/app/api';
 
 export default function Search() {
-  // const [search, setSearch] = useState('');
   const [list, setList] = useState([]);
   const runSearch = (query) => {
     if(query.length === 0) {
@@ -28,7 +27,7 @@ export default function Search() {
                 <img className="poster" src={item[media_type_profile_path[item.media_type]] ? (tmdb_media_base + item[media_type_profile_path[item.media_type]]) : null} />
               </div>
             </div>
-            <div>{item[media_type_name_map[item.media_type]]}</div>
+            <div>{item[media_type_name[item.media_type]]}</div>
           </Link>
         ))}
       </div>

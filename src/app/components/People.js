@@ -1,10 +1,11 @@
 import Link from 'next/link'
-import { tmdb_media_base } from '@/app/api';
+import { tmdb_media_base, getRole } from '@/app/api';
 
 export default async function People({
   people,
   name,
-  type
+  type,
+  mediaType
 }) {
   return (
     <div className="category">
@@ -16,8 +17,8 @@ export default async function People({
             <img className="poster" src={person.profile_path ? (tmdb_media_base + person.profile_path) : null} />
           </div>
           <div className="desc">
-            <div className="desc-title">{person.name}</div>
-            <div className="desc-role">{type==='cast' ? person.character : person.job}</div>
+            <div className="desc-name">{person.name}</div>
+            <div className="desc-role">{getRole(type, mediaType, person)}</div>
           </div>
         </Link>
       ))}

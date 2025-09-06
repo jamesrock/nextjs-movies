@@ -1,17 +1,17 @@
-import Link from 'next/link'
-import { fetch_options, tmdb_base } from '@/app/api';
+import { fetch_options, tmdb_base, media_type_credits_path, dedupe } from '@/app/api';
 import People from './People';
 
 export default async function CastAndCrew({
-  id
+  id,
+  type
 }) {
-  const data = await fetch(tmdb_base + `/movie/${id}/credits?language=en-US`, fetch_options);
+  const data = await fetch(tmdb_base + `/${type}/${id}/${media_type_credits_path[type]}?language=en-US`, fetch_options);
   const people = await data.json();
   console.log(people);
   return (
     <div className="cast-and-crew">
-      <People people={people.cast} name="Cast" type="cast" />
-      <People people={people.crew} name="Crew" type="crew" />
+      {!!people.cast.length && <People people={type==='movie' ? dedupe(people.cast, 'cast') : people.cast} name="Cast" type="cast" mediaType={type} />}
+      {!!people.crew.length && <People people={type==='movie' ? dedupe(people.crew, 'crew') : people.crew} name="Crew" type="crew" mediaType={type} />}
     </div>
   );
 }
