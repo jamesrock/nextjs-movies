@@ -46,27 +46,6 @@ a {
   }
 }
 
-.films {
-  display: flex;
-  gap: 20px;
-  flex-direction: column;
-
-  .plot {
-    font-size: 16px;
-  }
-
-  .film {
-    display: flex;
-    gap: 20px;
-    text-decoration: none;
-
-    .poster {
-      width: 120px;
-    }
-  }
-
-}
-
 .stars,
 .directors {
   a {
