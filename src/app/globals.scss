@@ -198,6 +198,8 @@ a {
     background-color: var(--background);
     z-index: 1;
     padding: 20px 0;
+    left: 0;
+    right: 0;
   
     &-item {
       display: flex;
