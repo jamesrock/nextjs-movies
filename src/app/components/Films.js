@@ -11,7 +11,7 @@ export default async function Films({
       <h2>{name}</h2>
       <div className="filmography-items">
       {films.map((film, i) => (
-        <Link href={`/film/${film.id}`} className="filmography-item" key={`${type}-${film.id}-${i}`}>
+        <Link href={`/movie/${film.id}`} className="filmography-item" key={`${type}-${film.id}-${i}`}>
           <div className="poster-crop">
             <img className="poster" src={film.poster_path ? (tmdb_media_base + film.poster_path) : null } />
           </div>

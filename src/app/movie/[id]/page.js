@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import { toTime, getRatingClass } from '@/app/api';
 import { fetch_options, tmdb_base, tmdb_media_base } from '@/app/api';
 import CastAndCrew from '@/app/components/CastAndCrew';

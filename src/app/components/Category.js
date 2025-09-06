@@ -13,7 +13,7 @@ export default async function Category({
       <h2>{name}</h2>
       <div className="category-items">
       {films?.results?.length && films?.results?.map((film) => (
-        <Link href={`/film/${film.id}`} className="category-item" key={film.id}>
+        <Link href={`/movie/${film.id}`} className="category-item" key={film.id}>
           <div className="poster-crop">
             <img className="poster" src={tmdb_media_base + film.poster_path} />
           </div>
