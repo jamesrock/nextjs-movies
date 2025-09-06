@@ -105,12 +105,24 @@ a {
     width: 200px;
     flex-shrink: 0;
     text-decoration: none;
-    .name {
-      font-weight: 500;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      overflow: hidden;
+    .desc {
       padding: 5px 0 15px;
+      
+      &-title,
+      &-role {
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
+
+      &-title {
+        font-weight: 500;
+      }
+      
+      &-role {
+        font-style: italic;
+      }
+
     }
   }
 
@@ -128,8 +140,7 @@ a {
 }
 
 .film,
-.actor,
-.director {
+.person {
   display: flex;
   gap: 1.5em;
   flex-wrap: wrap;
@@ -149,7 +160,7 @@ a {
 }
 
 .poster-crop {
-  background-color: grey;
+  background-color: rgb(32, 32, 32);
   height: 0;
   padding-bottom: 148%;
   position: relative;
@@ -158,6 +169,9 @@ a {
     object-fit: cover;
     width: 100%;
     height: 100%;
+    &:not([src]) {
+      display: none;
+    }
   }
 }
 
@@ -196,4 +210,8 @@ a {
       }
     }
   }
+}
+
+.cast-and-crew {
+  width: 100%;
 }

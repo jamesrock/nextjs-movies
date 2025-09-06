@@ -7,13 +7,12 @@ export default async function Home() {
       <Search />
       <div className="categories">
         <Category name="Latest Releases" />
-        <Category id="Comedy" name="Comedy" />
-        <Category id="Horror" name="Horror" />
-        <Category id="Family" name="Family" />
-        <Category id="Fantasy" name="Fantasy" />
-        <Category id="Drama" name="Drama" />
-        <Category id="Action" name="Action" />
-        <Category id="Sci-Fi" name="Sci-Fi" />
+        <Category name="Comedy" id="35" />
+        <Category name="Horror" id="27" />
+        <Category name="Family" id="10751" />
+        <Category name="Action" id="28" />
+        <Category name="Sci-Fi" id="878" />
+        <Category name="Drama" id="18" />
       </div>
     </main>
   );

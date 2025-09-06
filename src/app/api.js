@@ -13,9 +13,19 @@ export const getRatingClass = (rating) => {
   };
 };
 
-export const toTime = (s) => {
+export const toTime = (time) => {
   const 
-  h = Math.floor(s / 3600),
-  m = Math.floor(s % 3600 / 60);
-  return `${h}h ${m}m`;
+  h = Math.floor(time / 60),
+  m = Math.floor(time % 60);
+  return (h ? `${h}h ` : '') + (m ? `${m}m` : '');
 };
+
+export const fetch_options = {
+  method: 'GET', 
+  headers: {
+    accept: 'application/json',
+    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3MTcwMzdlNzI5ZWZlMTVmN2RiMzg0MTgyZDk5NjY3YiIsIm5iZiI6MTc1NzE1ODcxNC44OTkwMDAyLCJzdWIiOiI2OGJjMWQzYTUzODUwMTQ1MWI0ZTVhMDIiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.pdeAI0b67FCNnGHd7BFdpjphJQIJN1cfJ07Kkq8lznI'
+  }
+};
+export const tmdb_base = 'https://api.themoviedb.org/3';
+export const tmdb_media_base = 'https://image.tmdb.org/t/p/original';
