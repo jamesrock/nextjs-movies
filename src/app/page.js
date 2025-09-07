@@ -1,12 +1,10 @@
 import NowPlaying from './components/NowPlaying';
 import ComingSoon from './components/ComingSoon';
 import Category from './components/Category';
-import Search from './components/Search';
 
 export default async function Home() {
   return (
     <main>
-      <Search />
       <div className="categories">
         <NowPlaying name="Now Playing" />
         <ComingSoon name="Coming Soon" />

@@ -1,8 +1,9 @@
-import { Poppins } from "next/font/google";
-import "./globals.scss?33333333333";
+import { Poppins } from 'next/font/google';
+import Search from './components/Search';
+import './globals.scss?3333333333333333333333333333';
 
 const fontFace = Poppins({
-  subsets: ["latin"],
+  subsets: ['latin'],
   weight: ['400', '500', '600', '700'],
   style: ['italic', 'normal']
 });
@@ -16,6 +17,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${fontFace.className}`}>
+        <Search />
         {children}
       </body>
     </html>

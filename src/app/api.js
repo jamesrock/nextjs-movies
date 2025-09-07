@@ -85,3 +85,14 @@ export const dedupe = (data, type) => {
   });
   return out;
 };
+export const filterSearch = (items) => {
+  console.log(items);
+  return items.filter((item) => {
+    if(item.media_type==='person') {
+      return item.known_for.length>1;
+    }
+    else {
+      return true;
+    };
+  });
+};
