@@ -1,4 +1,4 @@
-import { fetch_options, tmdb_base, media_type_credits_path, dedupe } from '@/app/api';
+import { fetch_options, tmdb_base, media_type_credits_path, dedupe, getProp, sortByPriority, job_priority } from '@/app/api';
 import People from './People';
 
 export default async function CastAndCrew({
@@ -11,7 +11,7 @@ export default async function CastAndCrew({
   return (
     <div className="cast-and-crew">
       {!!people.cast.length && <People people={type==='movie' ? dedupe(people.cast, 'cast') : people.cast} name="Cast" type="cast" mediaType={type} />}
-      {!!people.crew.length && <People people={type==='movie' ? dedupe(people.crew, 'crew') : people.crew} name="Crew" type="crew" mediaType={type} />}
+      {!!people.crew.length && <People people={type==='movie' ? dedupe(sortByPriority(people.crew, job_priority), 'crew') : people.crew} name="Crew" type="crew" mediaType={type} />}
     </div>
   );
 }

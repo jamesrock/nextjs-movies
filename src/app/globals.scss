@@ -231,3 +231,28 @@ a {
   gap: 1em;
   width: 100%;
 }
+
+.companies {
+  width: 100%;
+  text-align: center;
+  
+  h2 {
+    margin-bottom: 0.5em;
+  }
+
+  &-items {
+    display: flex;
+    gap: 1em;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .company {
+    text-decoration: none;
+    line-height: 1;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+}
