@@ -176,7 +176,6 @@ a {
 }
 
 .search {
-  padding-bottom: 3em;
 
   input[type="search"] {
     font-size: inherit;
@@ -185,6 +184,13 @@ a {
     border: 0;
     border-radius: 5px;
     width: 100%;
+    z-index: 1;
+    position: relative;
+    box-shadow: 0 0 10px black;
+    font-weight: 500;
+    &::placeholder {
+      color: grey;
+    }
   }
 
   &-body {
@@ -221,6 +227,34 @@ a {
       .poster-wrap {
         width: 60px;
       }
+    }
+  }
+}
+
+.navigation {
+  padding-bottom: 1em;
+  &-body {
+    max-width: 750px;
+    margin: 0 auto;
+    position: relative;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+  }
+  &-item {
+    text-decoration: none;
+    text-transform: uppercase;
+    display: inline-block;
+    background-color: rgb(64, 64, 64);
+    padding: 7px 15px 5px;
+    border-radius: 0 0 5px 5px;
+    color: #bebebe;
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: 1px;
+    transition: color .25s;
+    &:hover {
+      color: white;
     }
   }
 }

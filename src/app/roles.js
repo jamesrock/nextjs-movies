@@ -240,6 +240,7 @@ const roles = [
   'Set Production Assistant',
   'Set Medic',
   'Unit Publicist',
+  'Visual Effects Production Assistant',
   'Main Title Designer',
   'Sculptor',
   'Color Timer',

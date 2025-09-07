@@ -1,6 +1,7 @@
 import { Poppins } from 'next/font/google';
 import Search from './components/Search';
-import './globals.scss?333333333333333333333333333333333333333333';
+import './globals.scss?333333333333333333333333333333333333333333333333333333333333333';
+import Navigation from './components/Navigation';
 
 const fontFace = Poppins({
   subsets: ['latin'],
@@ -18,6 +19,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`${fontFace.className}`}>
         <Search />
+        <Navigation />
         {children}
       </body>
     </html>
