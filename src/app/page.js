@@ -1,6 +1,6 @@
-import Category from './components/Category';
-import ComingSoon from './components/ComingSoon';
 import NowPlaying from './components/NowPlaying';
+import ComingSoon from './components/ComingSoon';
+import Category from './components/Category';
 import Search from './components/Search';
 
 export default async function Home() {
