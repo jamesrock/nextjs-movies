@@ -1,4 +1,6 @@
 import Category from './components/Category';
+import ComingSoon from './components/ComingSoon';
+import NowPlaying from './components/NowPlaying';
 import Search from './components/Search';
 
 export default async function Home() {
@@ -6,7 +8,8 @@ export default async function Home() {
     <main>
       <Search />
       <div className="categories">
-        <Category name="Latest Releases" />
+        <NowPlaying name="Now Playing" />
+        <ComingSoon name="Coming Soon" />
         <Category name="Comedy" id="35" />
         <Category name="Horror" id="27" />
         <Category name="Family" id="10751" />

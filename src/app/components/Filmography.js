@@ -9,8 +9,8 @@ export default async function Filmography({
   console.log(films);
   return (
     <div className="cast-and-crew">
-      {!!films.cast.length && <Films films={dedupe(films.cast, 'cast')} name="Cast" type="cast" />}
-      {!!films.crew.length && <Films films={dedupe(films.crew, 'crew')} name="Crew" type="crew" />}
+      {!!films.cast.length && <Films films={dedupe(films.cast, 'cast')} name="Cast" type="cast" credits={true} />}
+      {!!films.crew.length && <Films films={dedupe(films.crew, 'crew')} name="Crew" type="crew" credits={true} />}
     </div>
   );
 }

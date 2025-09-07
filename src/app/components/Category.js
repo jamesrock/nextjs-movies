@@ -1,5 +1,5 @@
-import Link from 'next/link'
-import { fetch_options, tmdb_base, tmdb_media_base } from '@/app/api';
+import { fetch_options, tmdb_base } from '@/app/api';
+import Films from './Films';
 
 export default async function Category({
   id,
@@ -9,20 +9,6 @@ export default async function Category({
   const films = await data.json();
   console.log(films);
   return (
-    <div className="category">
-      <h2>{name}</h2>
-      <div className="category-items">
-      {films?.results?.length && films?.results?.map((film) => (
-        <Link href={`/movie/${film.id}`} className="category-item" key={film.id}>
-          <div className="poster-crop">
-            <img className="poster" src={tmdb_media_base + film.poster_path} />
-          </div>
-          <div className="desc">
-            <div className="desc-name">{film.title}</div>
-          </div>
-        </Link>
-      ))}
-      </div>
-    </div>
+    <Films films={films.results} name={name} mediaType="movie" />
   );
 }

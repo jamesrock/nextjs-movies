@@ -53,8 +53,11 @@ export const getRole = (type, mediaType, person) => {
     case 'tv':
       return type==='cast' ? joinRoles(person.roles, 'character') : joinRoles(person.jobs, 'job');
     case 'movie':
-      return type==='cast' ? joinFlatRoles(person.characters) : joinFlatRoles(person.jobs);
+      return getFilmographyRole(type, person);
   };
+};
+export const getFilmographyRole = (type, person) => {
+  return type==='cast' ? joinFlatRoles(person.characters) : joinFlatRoles(person.jobs);
 };
 export const floorRating = (rating) => {
   return Math.floor(rating * 10) / 10;
