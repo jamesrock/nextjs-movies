@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import Link from 'next/link';
 import { tmdb_media_base, media_type_name, getFilmographyRole } from '@/app/api';
 
 export default async function Films({

@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import Link from 'next/link';
 import { tmdb_media_base, getRole } from '@/app/api';
 
 export default async function People({
@@ -12,7 +12,7 @@ export default async function People({
       <h2>{name}</h2>
       <div className="category-items">
       {people.map((person, i) => (
-        <Link href={`/person/${person.id}`} className="category-item" key={`person-${type}-${i}`}>
+        <Link href={`/person/${person.id}`} className="category-item" key={`person-${person.id}-${i}`}>
           <div className="poster-crop">
             <img className="poster" src={person.profile_path ? (tmdb_media_base + person.profile_path) : null} />
           </div>

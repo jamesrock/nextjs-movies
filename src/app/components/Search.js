@@ -1,6 +1,6 @@
 'use client'
 
-import Link from 'next/link'
+import Link from 'next/link';
 import { useState } from 'react';
 import { fetch_options, tmdb_base, tmdb_media_base, media_type_name, media_type_profile_path } from '@/app/api';
 
