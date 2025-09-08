@@ -1,6 +1,6 @@
 import { toTime, floorRating, getRatingClass, fetch_options, tmdb_base, tmdb_media_base } from '@/app/api';
 import CastAndCrew from '@/app/components/CastAndCrew';
-import Companies from '@/app/components/Companies';
+import Recommendations from '@/app/components/Recommendations';
 
 export default async function Film({
   params
@@ -27,7 +27,7 @@ export default async function Film({
         </div>
         <p className="plot">{film?.overview}</p>
         <CastAndCrew id={film?.id} type="movie" />
-        {/* <Companies companies={film.production_companies} /> */}
+        <Recommendations id={film?.id} />
       </div>
     </main>
   );
