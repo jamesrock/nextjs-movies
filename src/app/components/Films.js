@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { media_type_name, getRole } from '@/app/api';
-import Poster from '@/app/components/Poster';
+import Poster from './Poster';
 
 export default async function Films({
   films,
