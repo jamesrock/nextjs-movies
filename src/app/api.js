@@ -122,7 +122,7 @@ export const getProp = (collection, prop) => {
 export const dedupe2 = (data) => {
   const out = [];
   data.forEach((item) => {
-    if(out.filter((title) => title===item).length===0) {
+    if(out.indexOf(item)===-1) {
       out.push(item);
     };
   });
@@ -131,10 +131,14 @@ export const dedupe2 = (data) => {
 
 export const sortByPriority = (collection, sorter) => {
   const logged = [];
-  return collection.sort((a, b) => {
+  return [...collection].sort((a, b) => {
     if(sorter.priority.indexOf(a[sorter.prop])===-1 && logged.indexOf(a[sorter.prop])===-1) {
       console.log(a[sorter.prop]);
       logged.push(a[sorter.prop]);
+    };
+    if(sorter.priority.indexOf(b[sorter.prop])===-1 && logged.indexOf(b[sorter.prop])===-1) {
+      console.log(b[sorter.prop]);
+      logged.push(b[sorter.prop]);
     };
     return sorter.priority.indexOf(a[sorter.prop])-sorter.priority.indexOf(b[sorter.prop]);
   });

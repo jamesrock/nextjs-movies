@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link';
-import { useState } from 'react';
+// import { useState } from 'react';
 const items = [
   {
     'name': 'Home',
@@ -10,8 +10,8 @@ const items = [
 ];
 
 export default function Navigation() {
-  const [list, setList] = useState([]);
-  const [query, setQuery] = useState('');
+  // const [list, setList] = useState([]);
+  // const [query, setQuery] = useState('');
   return (
     <div className="navigation">
       <div className="navigation-body">

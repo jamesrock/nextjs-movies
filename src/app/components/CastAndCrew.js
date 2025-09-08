@@ -1,4 +1,4 @@
-import { fetch_options, tmdb_base, media_type_credits_path, dedupe, getProp, sortByPriority, job_priority } from '@/app/api';
+import { fetch_options, tmdb_base, media_type_credits_path, dedupe, sortByPriority, job_priority } from '@/app/api';
 import People from './People';
 
 export default async function CastAndCrew({
