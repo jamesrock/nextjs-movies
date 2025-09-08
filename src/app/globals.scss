@@ -30,6 +30,10 @@ main {
   margin: 0 auto;
 }
 
+h1 {
+  line-height: 1.2;
+}
+
 h2 {
   margin-bottom: 1em;
 }
@@ -289,4 +293,16 @@ a {
     }
   }
 
+}
+
+.genres {
+  display: flex;
+  gap: 1em;
+
+  a {
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 }

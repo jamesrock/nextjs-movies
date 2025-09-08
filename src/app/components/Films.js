@@ -1,5 +1,6 @@
 import Link from 'next/link';
-import { tmdb_media_base, media_type_name, getRole } from '@/app/api';
+import { media_type_name, getRole } from '@/app/api';
+import Poster from '@/app/components/Poster';
 
 export default async function Films({
   films,
@@ -15,9 +16,7 @@ export default async function Films({
       <div className="category-items">
       {films.map((film) => (
         <Link href={`/${mediaType==='both' ? film.media_type : mediaType}/${film.id}`} className="category-item" key={`${type}-${film.id}`}>
-          <div className="poster-crop">
-            <img className="poster" src={film.poster_path ? (tmdb_media_base + film.poster_path) : null } />
-          </div>
+          <Poster path={film.poster_path} />
           <div className="desc">
             <div className="desc-name">{film[media_type_name[mediaType==='both' ? film.media_type : mediaType]]}</div>
             {credits && <div className="desc-role">{getRole(`${credits}/${(mediaType==='both' ? film.media_type : mediaType)}`, film)}</div>}

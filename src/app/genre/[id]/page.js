@@ -1,6 +1,5 @@
-import { fetch_options, tmdb_base } from '@/app/api';
+import { fetch_options, tmdb_base, tmdb_media_base } from '@/app/api';
 import Filmography from '@/app/components/Filmography';
-import Poster from '@/app/components/Poster';
 
 export default async function Person({
   params
@@ -13,7 +12,6 @@ export default async function Person({
     <main>
       <div className="person">
         <h1>{person.name}</h1>
-        <Poster path={person.profile_path} />
         <p className="bio">{person.biography}</p>
         <Filmography id={person.id} />
       </div>
