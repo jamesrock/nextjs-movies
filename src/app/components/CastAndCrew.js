@@ -8,9 +8,6 @@ export default async function CastAndCrew({
   const data = await fetch(tmdb_base + `/${type}/${id}/${media_type_credits_path[type]}?language=en-US`, fetch_options);
   const people = await data.json();
   // console.log(people);
-  // console.log(getProp(people.crew, 'department'));
-  // console.log('people with more than one job', );
-  // console.log(dedupe(people.crew, 'tv/crew').length);
   return (
     <div className="cast-and-crew">
       {!!people.cast.length && <People people={type==='movie' ? dedupe(people.cast, 'cast') : people.cast} name="Cast" type={`cast/${type}`} />}

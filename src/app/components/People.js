@@ -6,6 +6,7 @@ export default async function People({
   name,
   type
 }) {
+  console.log(people);
   return (
     <div className="category">
       <h2>{name}</h2>
