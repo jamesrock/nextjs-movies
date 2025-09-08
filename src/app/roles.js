@@ -651,6 +651,7 @@ const roles = [
   'Digital Conform Editor',
   'Genetator Operator',
   'Standby Rigger',
+  'Second Unit',
   'Set Dressing Production Assistant',
   'Stunts Coordinator',
   'Health and Safety',
