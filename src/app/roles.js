@@ -203,6 +203,7 @@ const roles = [
   'Hairdresser',
   'Hair Assistant',
   'Makeup & Hair',
+  'Makeup & Hair Assistant',
   'Vocal Coach',
   'Master Lighting Artist',
   'Mixing Engineer',
