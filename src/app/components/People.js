@@ -9,7 +9,7 @@ export default async function People({
 }) {
   console.log(people);
   return (
-    <div className="category">
+    !!people.length && <div className="category">
       <h2>{name}</h2>
       <div className="category-items">
       {people.map((person) => (

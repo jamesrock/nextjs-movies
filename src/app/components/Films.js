@@ -11,7 +11,7 @@ export default async function Films({
 }) {
   // console.log(`films[${type}]`, films);
   return (
-    <div className="category">
+    !!films.length && <div className="category">
       <h2>{name}</h2>
       <div className="category-items">
       {films.map((film) => (
