@@ -164,22 +164,27 @@ a {
   position: relative;
   width: 100%;
   overflow: hidden;
+
   .poster {
     display: block;
     position: absolute;
     object-fit: cover;
     width: 100%;
     height: 100%;
-    transition: filter .25s;
-    
-    &:hover {
-      filter: brightness(1.5);
-    }
   
     &:not([src]) {
       display: none;
     }
   }
+
+  a & {
+    transition: transform 0.25s;
+    
+    &:hover {
+      transform: scale(0.95);
+    }
+  }
+  
 }
 
 .search {
