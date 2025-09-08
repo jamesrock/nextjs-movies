@@ -165,3 +165,12 @@ export const sortByPriority = (collection, sorter) => {
     return sorter.priority.indexOf(a[sorter.prop])-sorter.priority.indexOf(b[sorter.prop]);
   });
 };
+
+export const genres = {};
+
+export const setGenres = (data) => {
+  data.forEach((genre) => {
+    genres[genre.id] = genre.name;
+  });
+  console.log(genres);
+};
