@@ -50,9 +50,9 @@ const joinRoles = (roles, key) => {
 const joinFlatRoles = (roles) => {
   return roles.map((role) => role||'Unknown').join(', ');
 };
-export const getRole = (type, mediaType, person) => {
+export const getRole = (type, person) => {
   // console.log(`${type}/${mediaType}`, person);
-  switch(`${type}/${mediaType}`) {
+  switch(type) {
     case 'credits/cast/movie':
     case 'filmography/cast/movie':
     case 'filmography/cast/tv':
@@ -92,6 +92,17 @@ export const dedupe = (data, type) => {
     };
   });
   return out;
+};
+export const flattenJobs = (people) => {
+  const peopleWithOneJob = people.filter((person) => person.jobs.length===1).map((person) => {
+    return {...person, job: person.jobs[0].job};
+  });
+  people.filter((person) => person.jobs.length>1).forEach((person) => {
+    person.jobs.forEach((job) => {
+      peopleWithOneJob.push({...person, job: job.job});
+    });
+  });
+  return peopleWithOneJob;
 };
 export const filterSearch = (items) => {
   console.log(items);

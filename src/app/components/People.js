@@ -4,8 +4,7 @@ import { tmdb_media_base, getRole } from '@/app/api';
 export default async function People({
   people,
   name,
-  type,
-  mediaType
+  type
 }) {
   return (
     <div className="category">
@@ -18,7 +17,7 @@ export default async function People({
           </div>
           <div className="desc">
             <div className="desc-name">{person.name}</div>
-            <div className="desc-role">{getRole(`credits/${type}`, mediaType, person)}</div>
+            <div className="desc-role">{getRole(`credits/${type}`, person)}</div>
           </div>
         </Link>
       ))}

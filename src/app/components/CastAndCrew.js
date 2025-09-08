@@ -1,4 +1,4 @@
-import { fetch_options, tmdb_base, media_type_credits_path, dedupe, sortByPriority, job_priority, getProp } from '@/app/api';
+import { fetch_options, tmdb_base, media_type_credits_path, dedupe, sortByPriority, job_priority, flattenJobs, getProp } from '@/app/api';
 import People from './People';
 
 export default async function CastAndCrew({
@@ -7,12 +7,14 @@ export default async function CastAndCrew({
 }) {
   const data = await fetch(tmdb_base + `/${type}/${id}/${media_type_credits_path[type]}?language=en-US`, fetch_options);
   const people = await data.json();
-  console.log(people);
+  // console.log(people);
   // console.log(getProp(people.crew, 'department'));
+  // console.log('people with more than one job', );
+  // console.log(dedupe(people.crew, 'tv/crew').length);
   return (
     <div className="cast-and-crew">
-      {!!people.cast.length && <People people={type==='movie' ? dedupe(people.cast, 'cast') : people.cast} name="Cast" type="cast" mediaType={type} />}
-      {!!people.crew.length && <People people={type==='movie' ? dedupe(sortByPriority(people.crew, job_priority), 'crew') : people.crew} name="Crew" type="crew" mediaType={type} />}
+      {!!people.cast.length && <People people={type==='movie' ? dedupe(people.cast, 'cast') : people.cast} name="Cast" type={`cast/${type}`} />}
+      {!!people.crew.length && <People people={type==='movie' ? dedupe(sortByPriority(people.crew, job_priority), 'crew') : dedupe(sortByPriority(flattenJobs(people.crew), job_priority), 'crew')} name="Crew" type={`crew/${type}`} />}
     </div>
   );
 }

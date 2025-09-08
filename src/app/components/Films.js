@@ -20,7 +20,7 @@ export default async function Films({
           </div>
           <div className="desc">
             <div className="desc-name">{film[media_type_name[mediaType==='both' ? film.media_type : mediaType]]}</div>
-            {credits && <div className="desc-role">{getRole(credits, (mediaType==='both' ? film.media_type : mediaType), film)}</div>}
+            {credits && <div className="desc-role">{getRole(`${credits}/${(mediaType==='both' ? film.media_type : mediaType)}`, film)}</div>}
           </div>
         </Link>
       ))}
