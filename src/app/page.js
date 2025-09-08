@@ -6,8 +6,8 @@ export default async function Home() {
   return (
     <main>
       <div className="categories">
-        <NowPlaying name="Now Playing" />
-        <ComingSoon name="Coming Soon" />
+        <NowPlaying />
+        <ComingSoon />
         <Category name="Comedy" id="35" />
         <Category name="Horror" id="27" />
         <Category name="Family" id="10751" />

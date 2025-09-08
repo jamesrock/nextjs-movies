@@ -6,11 +6,11 @@ export default async function Filmography({
 }) {
   const data = await fetch(tmdb_base + `/person/${id}/combined_credits?language=en-US`, fetch_options);
   const films = await data.json();
-  console.log(films);
+  // console.log(films);
   return (
     <div className="cast-and-crew">
-      {!!films.cast.length && <Films films={dedupe(films.cast, 'cast')} name="Cast" type="cast" credits={true} />}
-      {!!films.crew.length && <Films films={dedupe(films.crew, 'crew')} name="Crew" type="crew" credits={true} />}
+      {!!films.cast.length && <Films films={dedupe(films.cast, 'cast')} name="Cast" type="cast" credits="filmography/cast" />}
+      {!!films.crew.length && <Films films={dedupe(films.crew, 'crew')} name="Crew" type="crew" credits="filmography/crew" />}
     </div>
   );
 }

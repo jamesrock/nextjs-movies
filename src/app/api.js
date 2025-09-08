@@ -51,15 +51,21 @@ const joinFlatRoles = (roles) => {
   return roles.map((role) => role||'Unknown').join(', ');
 };
 export const getRole = (type, mediaType, person) => {
-  switch(mediaType) {
-    case 'tv':
-      return type==='cast' ? joinRoles(person.roles, 'character') : joinRoles(person.jobs, 'job');
-    case 'movie':
-      return getFilmographyRole(type, person);
+  // console.log(`${type}/${mediaType}`, person);
+  switch(`${type}/${mediaType}`) {
+    case 'credits/cast/movie':
+    case 'filmography/cast/movie':
+    case 'filmography/cast/tv':
+      return joinFlatRoles(person.characters);
+    case 'credits/cast/tv':
+      return joinRoles(person.roles, 'character');
+    case 'credits/crew/movie':
+    case 'filmography/crew/movie':
+    case 'filmography/crew/tv':
+      return joinFlatRoles(person.jobs);
+    case 'credits/crew/tv':
+      return joinRoles(person.jobs, 'job');
   };
-};
-export const getFilmographyRole = (type, person) => {
-  return type==='cast' ? joinFlatRoles(person.characters) : joinFlatRoles(person.jobs);
 };
 export const floorRating = (rating) => {
   return Math.floor(rating * 10) / 10;
@@ -106,12 +112,17 @@ export const job_priority = {
 export const department_priority = {
   prop: 'department',
   priority: [
-    'Sound',
-    'Crew',
-    'Costume & Make-Up',
-    'Production',
     'Directing',
+    'Writing',
+    'Editing',
+    'Production',
+    'Crew',
+    'Camera',
+    'Sound',
+    'Lighting',
     'Art',
+    'Costume & Make-Up',
+    'Visual Effects',
   ]
 };
 
