@@ -86,11 +86,6 @@ a {
 
 }
 
-.poster {
-  width: 100%;
-  display: block;
-}
-
 .category {
   width: 100%;
 
@@ -168,11 +163,19 @@ a {
   padding-bottom: 148%;
   position: relative;
   width: 100%;
-  img {
+  overflow: hidden;
+  .poster {
+    display: block;
     position: absolute;
     object-fit: cover;
     width: 100%;
     height: 100%;
+    transition: filter .25s;
+    
+    &:hover {
+      filter: brightness(1.5);
+    }
+  
     &:not([src]) {
       display: none;
     }
