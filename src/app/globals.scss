@@ -51,6 +51,25 @@ a {
   }
 }
 
+button {
+  background-color: #404040;
+  border: 1px solid #525252;
+  padding: 10px 30px;
+  font-size: inherit;
+  font-family: inherit;
+  color: #bebebe;
+  border-radius: 5px;
+  font-weight: 600;
+  transition: color .25s;
+  text-transform: uppercase;
+  &:hover {
+    color: white;
+  }
+  &:not([disabled]) {
+    cursor: pointer;
+  }
+}
+
 .header {
   &-inner {
     display: flex;
@@ -65,16 +84,6 @@ a {
 
 header {
   margin-bottom: 2em;
-}
-
-.stars,
-.directors {
-  a {
-    margin-right: 5px;
-    &:not(:last-child):after {
-      content: ",";
-    }
-  }
 }
 
 .rating {
@@ -338,16 +347,26 @@ header {
 
 .films {
   width: 100%;
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 20px 12px;
 
   &-head {
     margin-bottom: 1em;
   }
 
-  .category-item {
-    width: auto;
+  &-body {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 20px 12px;
+
+    .category-item {
+      width: auto;
+    }
+  }
+
+  &-foot {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 2em;
   }
 
 }

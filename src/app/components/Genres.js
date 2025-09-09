@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-export default async function Genres({
+export default function Genres({
   genres
 }) {
   console.log(genres);

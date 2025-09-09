@@ -1,6 +1,6 @@
 import { tmdb_media_base } from '@/app/api';
 
-export default async function Poster({
+export default function Poster({
   path = null
 }) {
   return (

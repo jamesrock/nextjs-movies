@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { getRole } from '@/app/api';
 import Poster from './Poster';
 
-export default async function People({
+export default function People({
   people,
   name,
   type

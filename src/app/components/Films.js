@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { media_type_name, getRole } from '@/app/api';
 import Poster from './Poster';
 
-export default async function Films({
+export default function Films({
   films,
   name,
   mediaType = 'both',
