@@ -1,6 +1,7 @@
 import NowPlaying from './components/NowPlaying';
 import ComingSoon from './components/ComingSoon';
 import Category from './components/Category';
+import Link from 'next/link';
 
 export default async function Home() {
   return (
@@ -14,6 +15,9 @@ export default async function Home() {
         <Category id="18" />
         <Category id="27" />
         <Category id="878" />
+        <div className="categories-foot">
+          <Link href="/genre" className="button">View all genres</Link>
+        </div>
       </div>
     </main>
   );

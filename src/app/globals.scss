@@ -43,15 +43,23 @@ h3 {
   font-size: 1em;
 }
 
+h1,
+h2,
+h3 {
+  font-weight: 600;
+}
+
 a {
   color: inherit;
   text-decoration: none;
-  &:hover {
+  &:hover,
+  &:focus {
     text-decoration: underline;
   }
 }
 
-button {
+button,
+.button {
   background-color: #404040;
   border: 1px solid #525252;
   padding: 10px 30px;
@@ -64,6 +72,7 @@ button {
   text-transform: uppercase;
   &:hover {
     color: white;
+    text-decoration: none;
   }
   &:not([disabled]) {
     cursor: pointer;
@@ -180,6 +189,12 @@ header {
   display: flex;
   flex-wrap: wrap;
   gap: 2em;
+
+  &-foot {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
 }
 
 .bio,
@@ -376,5 +391,14 @@ header {
   padding-top: 2em;
   a {
     font-size: 2em;
+    transition: all .25s;
+    display: inline-block;
+
+    &:hover,
+    &:focus {
+      text-decoration: none;
+      transform: scale(1.25);
+      color: #e8009f;
+    }
   }
 }

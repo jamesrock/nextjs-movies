@@ -144,7 +144,7 @@ export const getProp = (collection, prop) => {
 export const dedupe2 = (data) => {
   const out = [];
   data.forEach((item) => {
-    if(out.indexOf(item)===-1) {
+    if(isMissing(out, item)) {
       out.push(item);
     };
   });
@@ -152,18 +152,25 @@ export const dedupe2 = (data) => {
 };
 
 export const sortByPriority = (collection, sorter) => {
-  const logged = [];
+  flagMissingSortItems(collection, sorter);
   return [...collection].sort((a, b) => {
-    if(sorter.priority.indexOf(a[sorter.prop])===-1 && logged.indexOf(a[sorter.prop])===-1) {
-      console.log(a[sorter.prop]);
-      logged.push(a[sorter.prop]);
-    };
-    if(sorter.priority.indexOf(b[sorter.prop])===-1 && logged.indexOf(b[sorter.prop])===-1) {
-      console.log(b[sorter.prop]);
-      logged.push(b[sorter.prop]);
-    };
     return sorter.priority.indexOf(a[sorter.prop])-sorter.priority.indexOf(b[sorter.prop]);
   });
+};
+
+const flagMissingSortItems = (collection, sorter) => {
+  const logged = [];
+  collection.forEach((item) => {
+    if(isMissing(sorter.priority, item[sorter.prop]) && isMissing(logged, item[sorter.prop])) {
+      console.log(item[sorter.prop]);
+      logged.push(item[sorter.prop]);
+    };
+  });
+  return logged;
+};
+
+const isMissing = (collection, prop) => {
+  return collection.indexOf(prop)===-1;
 };
 
 export const genres = {};
