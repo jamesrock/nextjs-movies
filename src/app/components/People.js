@@ -10,7 +10,9 @@ export default function People({
   console.log(people);
   return (
     !!people.length && <div className="category">
-      <h2>{name}</h2>
+      <div className="category-head">
+        <h2>{name}</h2>
+      </div>
       <div className="category-items">
       {people.map((person) => (
         <Link href={`/person/${person.id}`} className="category-item" key={`${type}-${person.id}`}>
