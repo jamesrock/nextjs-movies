@@ -1,7 +1,6 @@
 import { Poppins } from 'next/font/google';
-import { fetch_options, tmdb_base, setGenres } from '@/app/api';
 import Header from './components/Header';
-import './globals.scss?4444444444444444444444444444444444444444444444444444444444444444';
+import './globals.scss?44444444444';
 
 const fontFace = Poppins({
   subsets: ['latin'],
@@ -15,9 +14,6 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children }) {
-  const data = await fetch(tmdb_base + '/genre/movie/list?language=en', fetch_options);
-  const genres = await data.json();
-  setGenres(genres.genres);
   return (
     <html lang="en">
       <body className={`${fontFace.className}`}>

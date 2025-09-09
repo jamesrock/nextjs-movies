@@ -7,12 +7,16 @@ export default async function Films({
   name,
   mediaType = 'both',
   credits = false,
-  type = 'films'
+  genre = false,
+  type = 'films',
 }) {
   // console.log(`films[${type}]`, films);
   return (
     !!films.length && <div className="category">
-      <h2>{name}</h2>
+      <div className="category-head">
+        <h2>{name}</h2>
+        {genre && <Link href={`/genre/${genre}`}>view all</Link>}
+      </div>
       <div className="category-items">
       {films.map((film) => (
         <Link href={`/${mediaType==='both' ? film.media_type : mediaType}/${film.id}`} className="category-item" key={`${type}-${film.id}`}>

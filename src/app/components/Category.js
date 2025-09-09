@@ -8,6 +8,6 @@ export default async function Category({
   const films = await data.json();
   console.log(films);
   return (
-    <Films films={films.results} name={genres[id]} mediaType="movie" />
+    <Films films={films.results} name={genres[id]} mediaType="movie" genre={id} />
   );
 }
