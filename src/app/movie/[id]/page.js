@@ -8,7 +8,7 @@ export default async function Film({
   params
 }) {
   const { id } = await params;
-  const data = await fetch(tmdb_base + `/movie/${id}?language=en-US`, fetch_options);
+  const data = await fetch(tmdb_base + `/movie/${id}`, fetch_options);
   const film = await data.json();
   console.log(film);
   return (

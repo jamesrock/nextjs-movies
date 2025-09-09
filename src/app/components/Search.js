@@ -17,7 +17,7 @@ export default function Search() {
     if(cache[q]) {
       return setList(cache[q]);
     };
-    fetch(tmdb_base + `/search/multi?query=${query}&include_adult=false&language=en-US&page=1`, fetch_options)
+    fetch(tmdb_base + `/search/multi?query=${query}`, fetch_options)
       .then(response => response.json())
       .then(data => {cache[q] = filterSearch(data.results); setList(cache[q]);})
       .catch(error => console.log('Error:', error));

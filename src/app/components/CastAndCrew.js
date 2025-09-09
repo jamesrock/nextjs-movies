@@ -5,7 +5,7 @@ export default async function CastAndCrew({
   id,
   type
 }) {
-  const data = await fetch(tmdb_base + `/${type}/${id}/${media_type_credits_path[type]}?language=en-US`, fetch_options);
+  const data = await fetch(tmdb_base + `/${type}/${id}/${media_type_credits_path[type]}`, fetch_options);
   const people = await data.json();
   return (
     <div className="cast-and-crew">

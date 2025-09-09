@@ -6,7 +6,7 @@ export default async function Person({
   params
 }) {
   const { id } = await params;
-  const data = await fetch(tmdb_base + `/person/${id}?language=en-US`, fetch_options);
+  const data = await fetch(tmdb_base + `/person/${id}`, fetch_options);
   const person = await data.json();
   console.log(person);
   return (

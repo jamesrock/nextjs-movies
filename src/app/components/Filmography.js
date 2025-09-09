@@ -4,7 +4,7 @@ import Films from './Films';
 export default async function Filmography({
   id
 }) {
-  const data = await fetch(tmdb_base + `/person/${id}/combined_credits?language=en-US`, fetch_options);
+  const data = await fetch(tmdb_base + `/person/${id}/combined_credits`, fetch_options);
   const films = await data.json();
   // console.log(films);
   return (
