@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
-import { fetch_options, tmdb_base, tmdb_media_base, media_type_name, media_type_profile_path, filterSearch } from '@/app/api';
+import { fetch_options, tmdb_base, tmdb_media_base, media_type_name, media_type_profile_path, filterSearch, addProp, sortByProp, filterByMatch } from '@/app/api';
 const cache = {};
 
 export default function Search() {
@@ -17,10 +17,25 @@ export default function Search() {
     if(cache[q]) {
       return setList(cache[q]);
     };
-    fetch(tmdb_base + `/search/multi?query=${query}`, fetch_options)
-      .then(response => response.json())
-      .then(data => {cache[q] = filterSearch(data.results); setList(cache[q]);})
-      .catch(error => console.log('Error:', error));
+    // fetch(tmdb_base + `/search/multi?query=${q}`, fetch_options)
+    //   .then(response => response.json())
+    //   .then(data => {
+    //     cache[q] = filterSearch(data.results);
+    //     setList(cache[q]);
+    //     console.log(cache[q]);
+    //   }).catch(error => console.log('Error:', error));
+
+    Promise.all([
+      fetch(tmdb_base + `/search/movie?query=${q}`, fetch_options), 
+      fetch(tmdb_base + `/search/person?query=${q}`, fetch_options)
+    ]).then(responses => {
+      return Promise.all(responses.map((response) => response.json()));
+    }).then(data => {
+      cache[q] = sortByProp(filterByMatch([...addProp(data[0].results, 'media_type', 'movie'), ...addProp(data[1].results, 'media_type', 'person')], q), 'popularity');
+      setList(cache[q]);
+      console.log('combined', cache[q]);
+    }).catch(error => console.log('Error:', error));
+
   };
   const clearSearch = () => {
     setQuery('');

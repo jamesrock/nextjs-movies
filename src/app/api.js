@@ -88,9 +88,9 @@ const dedupe_type_map = {
   }
 };
 
-export const dedupe = (data, type) => {
+export const dedupe = (collection, type) => {
   const out = [];
-  data.forEach((item) => {
+  collection.forEach((item) => {
     const found = out.filter((title) => title.id===item.id);
     if(found.length>0) {
       found[0][dedupe_type_map[type]['plural']].push(item[dedupe_type_map[type]['target']]);
@@ -138,16 +138,18 @@ export const flattenJobs = (people) => {
   return peopleWithOneJob;
 };
 
-export const filterSearch = (items) => {
-  console.log(items);
-  return items.filter((item) => {
-    if(item.media_type==='person') {
-      return item.known_for.length>1;
-    }
-    else {
-      return true;
-    };
-  });
+export const filterFilms = (collection) => {
+  // return collection;
+  return collection.filter((item) => item.media_type==='movie');
+};
+
+const toFilter = [
+  'person',
+  'movie'
+];
+
+export const filterSearch = (collection) => {
+  return collection.filter((item) => toFilter.indexOf(item.media_type)>-1);
 };
 
 export const job_priority = {
@@ -173,7 +175,7 @@ export const department_priority = {
 };
 
 export const getProp = (collection, prop) => {
-  return dedupe2(collection.map((item) => item[prop]));
+  return dedupeFlat(collection.map((item) => item[prop]));
 };
 
 export const sortByPriority = (collection, sorter) => {
@@ -181,6 +183,21 @@ export const sortByPriority = (collection, sorter) => {
   return [...collection].sort((a, b) => {
     return sorter.priority.indexOf(a[sorter.prop])-sorter.priority.indexOf(b[sorter.prop]);
   });
+};
+
+export const addProp = (collection, prop, value) => {
+  return collection.map((item) => {return {...item, [prop]: value}});
+};
+
+export const sortByProp = (collection, prop) => {
+  return collection.sort((a, b) => {
+    return b[prop]-a[prop];
+  });
+};
+
+export const filterByMatch = (collection, q) => {
+  const reg = new RegExp(q, 'i');
+  return collection.filter((item) => item[media_type_name[item.media_type]].search(reg)===0);
 };
 
 const flagMissingSortItems = (collection, sorter) => {
