@@ -41,7 +41,7 @@ export default function Search() {
           {list.map((item) => (
             <Link href={`/${item.media_type}/${item.id}`} className="search-results-item" key={item.id} onClick={clearSearch}>
               <div className="poster-wrap">
-                <Poster src={item[media_type_profile_path[item.media_type]]} />
+                <Poster path={item[media_type_profile_path[item.media_type]]} />
               </div>
               <div>{item[media_type_name[item.media_type]]}</div>
             </Link>
