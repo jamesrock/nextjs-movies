@@ -139,17 +139,7 @@ export const flattenJobs = (people) => {
 };
 
 export const filterFilms = (collection) => {
-  // return collection;
   return collection.filter((item) => item.media_type==='movie');
-};
-
-const toFilter = [
-  'person',
-  'movie'
-];
-
-export const filterSearch = (collection) => {
-  return collection.filter((item) => toFilter.indexOf(item.media_type)>-1);
 };
 
 export const job_priority = {
