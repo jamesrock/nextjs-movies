@@ -1,11 +1,12 @@
-import { tmdb_media_base } from '@/app/api';
+import { getPosterPath } from '@/app/api';
 
 export default function Poster({
-  path = null
+  path = null,
+  size = 'original'
 }) {
   return (
     <div className="poster-crop">
-      <img className="poster" src={path ? (tmdb_media_base + path) : path} />
+      <img className="poster" src={getPosterPath(path, size)} />
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import roles from './roles';
 
 export const tmdb_base = 'https://api.themoviedb.org/3';
-export const tmdb_media_base = 'https://image.tmdb.org/t/p/original';
+export const tmdb_media_base = 'https://image.tmdb.org/t/p';
 export const fetch_options = {
   method: 'GET', 
   headers: {
@@ -31,7 +31,6 @@ export const toTime = (time) => {
 };
 
 export const media_type_name = {
-  'tv': 'name',
   'movie': 'title',
   'person': 'name'
 };
@@ -56,20 +55,14 @@ const joinFlatRoles = (roles) => {
 };
 
 export const getRole = (type, person) => {
-  // console.log(`${type}/${mediaType}`, person);
+  // console.log('type', person);
   switch(type) {
     case 'credits/cast/movie':
     case 'filmography/cast/movie':
-    case 'filmography/cast/tv':
       return joinFlatRoles(person.characters);
-    case 'credits/cast/tv':
-      return joinRoles(person.roles, 'character');
     case 'credits/crew/movie':
     case 'filmography/crew/movie':
-    case 'filmography/crew/tv':
       return joinFlatRoles(person.jobs);
-    case 'credits/crew/tv':
-      return joinRoles(person.jobs, 'job');
   };
 };
 
@@ -126,30 +119,13 @@ export const dedupeFlat = (collection) => {
   return out;
 };
 
-export const flattenJobs = (people) => {
-  const peopleWithOneJob = people.filter((person) => person.jobs.length===1).map((person) => {
-    return {...person, job: person.jobs[0].job};
-  });
-  people.filter((person) => person.jobs.length>1).forEach((person) => {
-    person.jobs.forEach((job) => {
-      peopleWithOneJob.push({...person, job: job.job});
-    });
-  });
-  return peopleWithOneJob;
-};
-
 export const filterFilms = (collection) => {
   return collection.filter((item) => item.media_type==='movie');
 };
 
-export const job_priority = {
-  prop: 'job',
-  priority: roles
-};
-
-export const department_priority = {
-  prop: 'department',
-  priority: [
+const sorters = {
+  'job': roles,
+  'department': [
     'Directing',
     'Writing',
     'Editing',
@@ -164,15 +140,15 @@ export const department_priority = {
   ]
 };
 
-export const getProp = (collection, prop) => {
-  return dedupeFlat(collection.map((item) => item[prop]));
-};
-
 export const sortByPriority = (collection, sorter) => {
   flagMissingSortItems(collection, sorter);
   return [...collection].sort((a, b) => {
-    return sorter.priority.indexOf(a[sorter.prop])-sorter.priority.indexOf(b[sorter.prop]);
+    return sorters[sorter].indexOf(a[sorter])-sorters[sorter].indexOf(b[sorter]);
   });
+};
+
+export const getProp = (collection, prop) => {
+  return dedupeFlat(collection.map((item) => item[prop]));
 };
 
 export const addProp = (collection, prop, value) => {
@@ -193,9 +169,9 @@ export const filterByMatch = (collection, q) => {
 const flagMissingSortItems = (collection, sorter) => {
   const logged = [];
   collection.forEach((item) => {
-    if(isMissing(sorter.priority, item[sorter.prop]) && isMissing(logged, item[sorter.prop])) {
-      console.log(item[sorter.prop]);
-      logged.push(item[sorter.prop]);
+    if(isMissing(sorters[sorter], item[sorter]) && isMissing(logged, item[sorter])) {
+      console.log(item[sorter]);
+      logged.push(item[sorter]);
     };
   });
   return logged;
@@ -203,6 +179,15 @@ const flagMissingSortItems = (collection, sorter) => {
 
 const isMissing = (collection, prop) => {
   return collection.indexOf(prop)===-1;
+};
+
+export const getPosterPath = (path, size) => {
+  return path ? (tmdb_media_base + `/${size}` + path) : null;
+};
+
+export const largest_size_map = {
+  'movie': 'w780',
+  'person': 'h632'
 };
 
 export const genres = {};

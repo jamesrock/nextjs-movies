@@ -26,7 +26,7 @@ export default async function Film({
         </div>
         <Poster path={film.poster_path} />
         <p className="plot">{film?.overview}</p>
-        <CastAndCrew id={film?.id} type="movie" />
+        <CastAndCrew id={film?.id} />
         <Recommendations id={film?.id} />
       </div>
     </main>

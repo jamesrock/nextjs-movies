@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
-import { fetch_options, tmdb_base, tmdb_media_base, media_type_name, media_type_profile_path, addProp, sortByProp, filterByMatch } from '@/app/api';
+import { fetch_options, tmdb_base, media_type_name, media_type_profile_path, largest_size_map, addProp, sortByProp, filterByMatch } from '@/app/api';
 import Poster from './Poster';
 const cache = {};
 
@@ -41,7 +41,7 @@ export default function Search() {
           {list.map((item) => (
             <Link href={`/${item.media_type}/${item.id}`} className="search-results-item" key={item.id} onClick={clearSearch}>
               <div className="poster-wrap">
-                <Poster path={item[media_type_profile_path[item.media_type]]} />
+                <Poster path={item[media_type_profile_path[item.media_type]]} size={largest_size_map[item.media_type]} />
               </div>
               <div>{item[media_type_name[item.media_type]]}</div>
             </Link>

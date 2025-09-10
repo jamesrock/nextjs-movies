@@ -1,16 +1,14 @@
 import Link from 'next/link';
-import { media_type_name, getRole } from '@/app/api';
+import { getRole } from '@/app/api';
 import Poster from './Poster';
 
 export default function Films({
   films,
   name,
-  mediaType = 'both',
   credits = false,
-  genre = false,
-  type = 'films',
+  genre = false
 }) {
-  // console.log(`films[${type}]`, films);
+  // console.log(name, films);
   return (
     !!films.length && <div className="category">
       <div className="category-head">
@@ -19,11 +17,11 @@ export default function Films({
       </div>
       <div className="category-items">
       {films.map((film) => (
-        <Link href={`/${mediaType==='both' ? film.media_type : mediaType}/${film.id}`} className="category-item" key={`${type}-${film.id}`}>
-          <Poster path={film.poster_path} />
+        <Link href={`/movie/${film.id}`} className="category-item" key={film.id}>
+          <Poster path={film.poster_path} size="w780" />
           <div className="desc">
-            <div className="desc-name">{film[media_type_name[mediaType==='both' ? film.media_type : mediaType]]}</div>
-            {credits && <div className="desc-role">{getRole(`${credits}/${(mediaType==='both' ? film.media_type : mediaType)}`, film)}</div>}
+            <div className="desc-name">{film.title}</div>
+            {credits && <div className="desc-role">{getRole(`${credits}/film`, film)}</div>}
           </div>
         </Link>
       ))}
