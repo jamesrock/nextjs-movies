@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { getRole } from '@/app/api';
+import { getRole, largest_size_map } from '@/app/api';
 import Poster from './Poster';
 
 export default function Films({
@@ -18,7 +18,7 @@ export default function Films({
       <div className="category-items">
       {films.map((film) => (
         <Link href={`/movie/${film.id}`} className="category-item" key={film.id}>
-          <Poster path={film.poster_path} size="w780" />
+          <Poster path={film.poster_path} size={largest_size_map.movie} />
           <div className="desc">
             <div className="desc-name">{film.title}</div>
             {credits && <div className="desc-role">{getRole(`${credits}/film`, film)}</div>}

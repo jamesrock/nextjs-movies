@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { fetch_options, tmdb_base, genres, dedupeFilms } from '@/app/api';
+import { fetch_options, tmdb_base, genres, dedupeFilms, largest_size_map } from '@/app/api';
 import Poster from './Poster';
 
 export default function FilmGrid({
@@ -29,7 +29,7 @@ export default function FilmGrid({
       <div className="films-body">
       {films?.map((film) => (
         <Link href={`/movie/${film.id}`} className="category-item" key={film.id}>
-          <Poster path={film.poster_path} />
+          <Poster path={film.poster_path} size={largest_size_map.movie} />
           <div className="desc">
             <div className="desc-name">{film.title}</div>
           </div>
