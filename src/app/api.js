@@ -1,7 +1,7 @@
 import roles from './roles';
 
 export const tmdb_base = 'https://api.themoviedb.org/3';
-export const tmdb_media_base = 'https://image.tmdb.org/t/p';
+const tmdb_media_base = 'https://image.tmdb.org/t/p';
 export const fetch_options = {
   method: 'GET', 
   headers: {
@@ -46,8 +46,9 @@ export const media_type_credits_path = {
   'tv': 'aggregate_credits'
 };
 
-const joinRoles = (roles, key) => {
-  return roles.map((role) => role[key]||'Unknown').join(', ');
+export const largest_size_map = {
+  'movie': 'w780',
+  'person': 'h632'
 };
 
 const joinFlatRoles = (roles) => {
@@ -55,13 +56,11 @@ const joinFlatRoles = (roles) => {
 };
 
 export const getRole = (type, person) => {
-  // console.log('type', person);
+  console.log(`getRole[${type}]`, person);
   switch(type) {
-    case 'credits/cast/movie':
-    case 'filmography/cast/movie':
+    case 'cast':
       return joinFlatRoles(person.characters);
-    case 'credits/crew/movie':
-    case 'filmography/crew/movie':
+    case 'crew':
       return joinFlatRoles(person.jobs);
   };
 };
@@ -117,10 +116,6 @@ export const dedupeFlat = (collection) => {
     };
   });
   return out;
-};
-
-export const filterFilms = (collection) => {
-  return collection.filter((item) => item.media_type==='movie');
 };
 
 const sorters = {
@@ -183,11 +178,6 @@ const isMissing = (collection, prop) => {
 
 export const getPosterPath = (path, size) => {
   return path ? (tmdb_media_base + `/${size}` + path) : null;
-};
-
-export const largest_size_map = {
-  'movie': 'w780',
-  'person': 'h632'
 };
 
 export const genres = {};
@@ -277,3 +267,11 @@ setGenres([
     "name": "Western"
   }
 ]);
+
+export const api = {
+  getFilmography: async function(id) {
+    const data = await fetch(tmdb_base + `/person/${id}/movie_credits`, fetch_options);
+    const films = await data.json();
+    return films;
+  }
+};

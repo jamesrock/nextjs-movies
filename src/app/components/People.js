@@ -19,7 +19,7 @@ export default function People({
           <Poster path={person.profile_path} size={largest_size_map.person} />
           <div className="desc">
             <div className="desc-name">{person.name}</div>
-            <div className="desc-role">{getRole(`credits/${type}`, person)}</div>
+            <div className="desc-role">{getRole(type, person)}</div>
           </div>
         </Link>
       ))}

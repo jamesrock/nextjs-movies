@@ -8,7 +8,7 @@ export default function Films({
   credits = false,
   genre = false
 }) {
-  // console.log(name, films);
+  console.log(name, films);
   return (
     !!films.length && <div className="category">
       <div className="category-head">
@@ -21,7 +21,7 @@ export default function Films({
           <Poster path={film.poster_path} size={largest_size_map.movie} />
           <div className="desc">
             <div className="desc-name">{film.title}</div>
-            {credits && <div className="desc-role">{getRole(`${credits}/film`, film)}</div>}
+            {credits && <div className="desc-role">{getRole(credits, film)}</div>}
           </div>
         </Link>
       ))}
