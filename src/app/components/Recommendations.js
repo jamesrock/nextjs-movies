@@ -1,11 +1,10 @@
-import { fetch_options, tmdb_base } from '@/app/api';
+import { api } from '@/app/api';
 import Films from './Films';
 
 export default async function Recommendations({
   id
 }) {
-  const data = await fetch(tmdb_base + `/movie/${id}/recommendations?region=GB`, fetch_options);
-  const films = await data.json();
+  const films = await api.getRecommendations(id);
   return (
     <Films films={films.results} name="Recommendations" />
   );

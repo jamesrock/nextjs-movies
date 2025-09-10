@@ -1,4 +1,4 @@
-import { fetch_options, tmdb_base } from '@/app/api';
+import { api } from '@/app/api';
 import Filmography from '@/app/components/Filmography';
 import Poster from '@/app/components/Poster';
 
@@ -6,8 +6,7 @@ export default async function Person({
   params
 }) {
   const { id } = await params;
-  const data = await fetch(tmdb_base + `/person/${id}`, fetch_options);
-  const person = await data.json();
+  const person = await api.getPerson(id);
   console.log(person);
   return (
     <main>

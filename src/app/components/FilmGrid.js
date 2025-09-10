@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { fetch_options, tmdb_base, genres, dedupeFilms, largest_size_map } from '@/app/api';
+import { genres, dedupeFilms, largest_size_map, api } from '@/app/api';
 import Poster from './Poster';
 
 export default function FilmGrid({
@@ -11,15 +11,13 @@ export default function FilmGrid({
   const [films, setFilms] = useState([]);
   const [page, setPage] = useState(0);
   const loadMore = (target) => {
-    console.log('loadMore', target);
-    fetch(tmdb_base + `/discover/movie?page=${target}&region=GB&sort_by=popularity.desc&with_release_type=2%7C3&with_genres=${id}`, fetch_options)
-      .then(response => response.json())
-      .then(data => {
-        setFilms(dedupeFilms([...films, ...data.results]));
-        setPage(target);
-        console.log(data);
-      })
-      .catch(error => console.log('Error:', error));
+    // console.log('loadMore', target);
+    api.getCategoryByPage(target, id).then(data => {
+      setFilms(dedupeFilms([...films, ...data.results]));
+      setPage(target);
+      console.log(data);
+    })
+    .catch(error => console.log('Error:', error));
   };
   useEffect(() => {
     console.log('useEffect');

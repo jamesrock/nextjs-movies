@@ -1,9 +1,8 @@
 import Link from 'next/link';
-import { fetch_options, tmdb_base } from '@/app/api';
+import { api } from '@/app/api';
 
 export default async function Genres() {
-  const data = await fetch(tmdb_base + '/genre/movie/list?language=en', fetch_options);
-  const genres = await data.json();
+  const genres = await api.getGenres();
   console.log(genres);
   return (
     <main>

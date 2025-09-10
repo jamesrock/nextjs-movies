@@ -1,8 +1,8 @@
 import roles from './roles';
 
-export const tmdb_base = 'https://api.themoviedb.org/3';
+const tmdb_base = 'https://api.themoviedb.org/3';
 const tmdb_media_base = 'https://image.tmdb.org/t/p';
-export const fetch_options = {
+const fetch_options = {
   method: 'GET', 
   headers: {
     accept: 'application/json',
@@ -56,7 +56,7 @@ const joinFlatRoles = (roles) => {
 };
 
 export const getRole = (type, person) => {
-  console.log(`getRole[${type}]`, person);
+  // console.log(`getRole[${type}]`, person);
   switch(type) {
     case 'cast':
       return joinFlatRoles(person.characters);
@@ -182,7 +182,7 @@ export const getPosterPath = (path, size) => {
 
 export const genres = {};
 
-export const setGenres = (data) => {
+const setGenres = (data) => {
   data.forEach((genre) => {
     genres[genre.id] = genre.name;
   });
@@ -273,5 +273,57 @@ export const api = {
     const data = await fetch(tmdb_base + `/person/${id}/movie_credits`, fetch_options);
     const films = await data.json();
     return films;
+  },
+  getCredits: async function(id) {
+    const data = await fetch(tmdb_base + `/movie/${id}/credits`, fetch_options);
+    const people = await data.json();
+    return people;
+  },
+  getCategory: async function(id) {
+    const data = await fetch(tmdb_base + `/discover/movie?region=GB&sort_by=popularity.desc&with_release_type=2%7C3&with_genres=${id}`, fetch_options);
+    const films = await data.json();
+    return films;
+  },
+  getNowPlaying: async function() {
+    const data = await fetch(tmdb_base + '/movie/now_playing?region=GB', fetch_options);
+    const films = await data.json();
+    return films;
+  },
+  getComingSoon: async function() {
+    const data = await fetch(tmdb_base + '/movie/upcoming?region=GB', fetch_options);
+    const films = await data.json();
+    return films;
+  },
+  getRecommendations: async function(id) {
+    const data = await fetch(tmdb_base + `/movie/${id}/recommendations?region=GB`, fetch_options);
+    const films = await data.json();
+    return films;
+  },
+  getGenres: async function() {
+    const data = await fetch(tmdb_base + '/genre/movie/list', fetch_options);
+    const genres = await data.json();
+    return genres;
+  },
+  getFilm: async function(id) {
+    const data = await fetch(tmdb_base + `/movie/${id}`, fetch_options);
+    const film = await data.json();
+    return film;
+  },
+  getPerson: async function(id) {
+    const data = await fetch(tmdb_base + `/person/${id}`, fetch_options);
+    const person = await data.json();
+    return person;
+  },
+  search: function(query) {
+    return Promise.all([
+      fetch(tmdb_base + `/search/movie?query=${query}`, fetch_options), 
+      fetch(tmdb_base + `/search/person?query=${query}`, fetch_options)
+    ]).then(responses => {
+      return Promise.all(responses.map((response) => response.json()));
+    });
+  },
+  getCategoryByPage: async function(page, id) {
+    return fetch(tmdb_base + `/discover/movie?page=${page}&region=GB&sort_by=popularity.desc&with_release_type=2%7C3&with_genres=${id}`, fetch_options)
+      .then(response => response.json())
   }
 };

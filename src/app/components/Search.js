@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
-import { fetch_options, tmdb_base, media_type_name, media_type_profile_path, largest_size_map, addProp, sortByProp, filterByMatch } from '@/app/api';
+import { media_type_name, media_type_profile_path, largest_size_map, addProp, sortByProp, filterByMatch, api } from '@/app/api';
 import Poster from './Poster';
 const cache = {};
 
@@ -18,12 +18,7 @@ export default function Search() {
     if(cache[q]) {
       return setList(cache[q]);
     };
-    Promise.all([
-      fetch(tmdb_base + `/search/movie?query=${q}`, fetch_options), 
-      fetch(tmdb_base + `/search/person?query=${q}`, fetch_options)
-    ]).then(responses => {
-      return Promise.all(responses.map((response) => response.json()));
-    }).then(data => {
+    api.search(q).then(data => {
       cache[q] = sortByProp(filterByMatch([...addProp(data[0].results, 'media_type', 'movie'), ...addProp(data[1].results, 'media_type', 'person')], q), 'popularity');
       setList(cache[q]);
       console.log('combined', cache[q]);

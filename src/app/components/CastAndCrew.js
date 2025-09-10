@@ -1,11 +1,10 @@
-import { fetch_options, tmdb_base, dedupe, sortByPriority } from '@/app/api';
+import { dedupe, sortByPriority, api } from '@/app/api';
 import People from './People';
 
 export default async function CastAndCrew({
   id
 }) {
-  const data = await fetch(tmdb_base + `/movie/${id}/credits`, fetch_options);
-  const people = await data.json();
+  const people = await api.getCredits(id);
   return (
     <div className="cast-and-crew">
       <People people={dedupe(people.cast, 'cast')} name="Cast" type="cast" />

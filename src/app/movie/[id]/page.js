@@ -1,4 +1,4 @@
-import { toTime, floorRating, getRatingClass, fetch_options, tmdb_base } from '@/app/api';
+import { toTime, floorRating, getRatingClass, api } from '@/app/api';
 import Poster from '@/app/components/Poster';
 import CastAndCrew from '@/app/components/CastAndCrew';
 import Genres from '@/app/components/Genres';
@@ -8,8 +8,7 @@ export default async function Film({
   params
 }) {
   const { id } = await params;
-  const data = await fetch(tmdb_base + `/movie/${id}`, fetch_options);
-  const film = await data.json();
+  const film = await api.getFilm(id);
   console.log(film);
   return (
     <main>
