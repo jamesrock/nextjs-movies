@@ -119,20 +119,7 @@ export const dedupeFlat = (collection) => {
 };
 
 const sorters = {
-  'job': roles,
-  'department': [
-    'Directing',
-    'Writing',
-    'Editing',
-    'Production',
-    'Crew',
-    'Camera',
-    'Sound',
-    'Lighting',
-    'Art',
-    'Costume & Make-Up',
-    'Visual Effects',
-  ]
+  'job': roles
 };
 
 export const sortByPriority = (collection, sorter) => {
@@ -322,8 +309,16 @@ export const api = {
       return Promise.all(responses.map((response) => response.json()));
     });
   },
-  getCategoryByPage: async function(page, id) {
-    return fetch(tmdb_base + `/discover/movie?page=${page}&region=GB&sort_by=popularity.desc&with_release_type=2%7C3&with_genres=${id}`, fetch_options)
-      .then(response => response.json())
+  getFilms: async function(type, page, id) {
+    let path = '';
+    switch(type) {
+      case 'recs':
+        path = (tmdb_base + `/movie/${id}/recommendations?page=${page}region=GB`);
+      break;
+      case 'genre':
+        path = (tmdb_base + `/discover/movie?with_genres=${id}&page=${page}&region=GB&sort_by=popularity.desc&with_release_type=2%7C3`);
+      break;
+    };
+    return fetch(path, fetch_options).then(response => response.json());
   }
 };

@@ -6,14 +6,14 @@ export default function Films({
   films,
   name,
   credits = false,
-  genre = false
+  link = false
 }) {
   console.log(name, films);
   return (
     !!films.length && <div className="category">
       <div className="category-head">
         <h2>{name}</h2>
-        {genre && <Link href={`/genre/${genre}`}>view all</Link>}
+        {link && <Link href={link}>view all</Link>}
       </div>
       <div className="category-items">
       {films.map((film) => (

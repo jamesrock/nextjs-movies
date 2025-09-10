@@ -6,6 +6,6 @@ export default async function Recommendations({
 }) {
   const films = await api.getRecommendations(id);
   return (
-    <Films films={films.results} name="Recommendations" />
+    <Films films={films.results} name="Recommendations" link={`/recs/${id}`} />
   );
 }

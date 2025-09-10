@@ -6,6 +6,6 @@ export default async function Category({
 }) {
   const films = await api.getCategory(id);
   return (
-    <Films films={films.results} name={genres[id]} genre={id} />
+    <Films films={films.results} name={genres[id]} link={`/genre/${id}`} />
   );
 }

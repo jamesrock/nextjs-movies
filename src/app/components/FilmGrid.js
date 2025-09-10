@@ -6,14 +6,17 @@ import { genres, dedupeFilms, largest_size_map, api } from '@/app/api';
 import Poster from './Poster';
 
 export default function FilmGrid({
-  id
+  id,
+  type = 'genre'
 }) {
   const [films, setFilms] = useState([]);
   const [page, setPage] = useState(0);
+  const [pages, setPages] = useState(0);
   const loadMore = (target) => {
     // console.log('loadMore', target);
-    api.getCategoryByPage(target, id).then(data => {
+    api.getFilms(type, target, id).then(data => {
       setFilms(dedupeFilms([...films, ...data.results]));
+      setPages(data.total_pages);
       setPage(target);
       console.log(data);
     })
@@ -26,7 +29,7 @@ export default function FilmGrid({
   return (
     <div className="films">
       <div className="films-head">
-        <h1>{genres[id]}</h1>
+        <h1>{type==='genre' ? genres[id] : 'Recommendations'}</h1>
       </div>
       <div className="films-body">
       {films?.map((film) => (
@@ -38,9 +41,9 @@ export default function FilmGrid({
         </Link>
       ))}
       </div>
-      <div className="films-foot">
+      {page<pages && <div className="films-foot">
         <button onClick={() => loadMore(page + 1)}>Load more</button>
-      </div>
+      </div>}
     </div>
   );
 }
