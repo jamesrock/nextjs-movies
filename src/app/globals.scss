@@ -224,16 +224,14 @@ header {
 }
 
 .poster-crop {
+  aspect-ratio: 2/3;
   background-color: rgb(32, 32, 32);
-  height: 0;
-  padding-bottom: 148%;
   position: relative;
   width: 100%;
   overflow: hidden;
 
   .poster {
     display: block;
-    position: absolute;
     object-fit: cover;
     width: 100%;
     height: 100%;
