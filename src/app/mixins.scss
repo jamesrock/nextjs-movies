@@ -1,0 +1,42 @@
+$phone: 500px;
+$tablet: 1180px;
+
+// phone is anything less than $phone
+// tablet is anything more than $phone, upto $tablet
+// desktop is anything beyond $tablet
+
+@mixin phone {
+  @media (max-width: ($phone)) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: ($phone + 1)) and (max-width: ($tablet)) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: ($tablet + 1)) {
+    @content;
+  }
+}
+
+@mixin phone-and-tablet {
+  @media (max-width: ($tablet)) {
+    @content;
+  }
+}
+
+@mixin tablet-and-desktop {
+  @media (min-width: ($phone + 1)) {
+    @content;
+  }
+}
+
+@mixin pointer-devices {
+  @media (pointer: fine) {
+    @content;
+  }
+}

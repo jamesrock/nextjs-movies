@@ -1,3 +1,5 @@
+@import 'mixins.scss';
+
 :root {
   --background: rgb(14, 14, 14);
   --foreground: white;
@@ -369,8 +371,15 @@ header {
 
   &-body {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 20px 12px;
+    
+    @include phone {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  
+    @include tablet-and-desktop {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
 
     .category-item {
       width: auto;
