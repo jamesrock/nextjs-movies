@@ -4,6 +4,6 @@ import Films from './Films';
 export default async function NowPlaying() {
   const films = await api.getNowPlaying();
   return (
-    <Films films={films.results} name="Now Playing" />
+    <Films films={films.results} name="Now Playing" link="/playing" />
   );
 }

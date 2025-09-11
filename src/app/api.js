@@ -318,6 +318,12 @@ export const api = {
       case 'genre':
         path = (tmdb_base + `/discover/movie?with_genres=${id}&page=${page}&region=GB&sort_by=popularity.desc&with_release_type=2%7C3`);
       break;
+      case 'playing':
+        path = (tmdb_base + `/movie/now_playing?&page=${page}&region=GB`);
+      break;
+      case 'coming':
+        path = (tmdb_base + `/movie/upcoming?&page=${page}&region=GB`);
+      break;
     };
     return fetch(path, fetch_options).then(response => response.json());
   }
