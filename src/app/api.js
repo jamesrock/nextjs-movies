@@ -83,9 +83,9 @@ const dedupe_type_map = {
 export const dedupe = (collection, type) => {
   const out = [];
   collection.forEach((item) => {
-    const found = out.filter((title) => title.id===item.id);
-    if(found.length>0) {
-      found[0][dedupe_type_map[type]['plural']].push(item[dedupe_type_map[type]['target']]);
+    const found = out.find((title) => title.id===item.id);
+    if(found) {
+      found[dedupe_type_map[type]['plural']].push(item[dedupe_type_map[type]['target']]);
     }
     else {
       out.push({[dedupe_type_map[type]['plural']]: [item[dedupe_type_map[type]['target']]], ...item});

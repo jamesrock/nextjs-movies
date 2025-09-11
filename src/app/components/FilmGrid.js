@@ -2,12 +2,14 @@
 
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { genres, dedupeFilms, largest_size_map, api } from '@/app/api';
+import { dedupeFilms, largest_size_map, api } from '@/app/api';
 import Poster from './Poster';
 
 export default function FilmGrid({
   id,
-  type = 'genre'
+  type = 'genre',
+  name = 'name',
+  sub = false
 }) {
   const [films, setFilms] = useState([]);
   const [page, setPage] = useState(0);
@@ -29,7 +31,8 @@ export default function FilmGrid({
   return (
     <div className="films">
       <div className="films-head">
-        <h1>{type==='genre' ? genres[id] : 'Recommendations'}</h1>
+        <h1>{name}</h1>
+        {sub && <h2>{sub}</h2>}
       </div>
       <div className="films-body">
       {films?.map((film) => (
