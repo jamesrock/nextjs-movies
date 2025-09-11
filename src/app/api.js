@@ -101,7 +101,7 @@ export const dedupeFilms = (films) => {
 export const dedupeByProp = (collection, prop) => {
   const out = [];
   collection.forEach((item) => {
-    if(out.filter((title) => title[prop]===item[prop]).length===0) {
+    if(!out.find((title) => title[prop]===item[prop])) {
       out.push(item);
     };
   });
