@@ -20,12 +20,12 @@ export default function FilmGrid({
       setFilms(dedupeFilms([...films, ...data.results]));
       setPages(data.total_pages);
       setPage(target);
-      console.log(data);
+      // console.log(data);
     })
     .catch(error => console.log('Error:', error));
   };
   useEffect(() => {
-    console.log('useEffect');
+    // console.log('useEffect');
     loadMore(1);
   }, []);
   return (

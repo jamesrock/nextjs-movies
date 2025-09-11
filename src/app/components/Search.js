@@ -22,7 +22,7 @@ export default function Search() {
     api.search(q).then(data => {
       cache[q] = sortByProp(filterByMatch([...addProp(data[0].results, 'media_type', 'movie'), ...addProp(data[1].results, 'media_type', 'person')], q), 'popularity');
       setList(cache[q]);
-      console.log('combined', cache[q]);
+      // console.log('combined', cache[q]);
     }).catch(error => console.log('Error:', error));
   };
   const clearSearch = () => {

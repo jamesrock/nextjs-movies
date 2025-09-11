@@ -7,7 +7,7 @@ export default function People({
   name,
   type
 }) {
-  console.log(name, people);
+  // console.log(name, people);
   return (
     !!people.length && <div className="category">
       <div className="category-head">

@@ -6,7 +6,7 @@ export default async function Recs({
 }) {
   const { id } = await params;
   const film = await api.getFilm(id);
-  console.log(film);
+  // console.log(film);
   return (
     <main>
       <FilmGrid id={id} type="recs" name="Recommendations" sub={`based on ${film?.title}`} />

@@ -7,7 +7,7 @@ export default async function Person({
 }) {
   const { id } = await params;
   const person = await api.getPerson(id);
-  console.log(person);
+  // console.log(person);
   return (
     <main>
       <div className="person">
