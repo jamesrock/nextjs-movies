@@ -21,8 +21,7 @@ export default function FilmGrid({
       setPages(data.total_pages);
       setPage(target);
       // console.log(data);
-    })
-    .catch(error => console.log('Error:', error));
+    }).catch(error => console.log('Error:', error));
   };
   useEffect(() => {
     // console.log('useEffect');
