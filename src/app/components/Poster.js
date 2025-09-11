@@ -1,4 +1,4 @@
-import { getPosterPath } from '@/app/api';
+import { api } from '@/app/api';
 
 export default function Poster({
   path = null,
@@ -6,7 +6,7 @@ export default function Poster({
 }) {
   return (
     <div className="poster-crop">
-      <img className="poster" src={getPosterPath(path, size)} />
+      <img className="poster" src={api.getPosterPath(path, size)} />
     </div>
   );
 }

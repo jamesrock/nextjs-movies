@@ -1,15 +1,5 @@
 import roles from './roles';
 
-const tmdb_base = 'https://api.themoviedb.org/3';
-const tmdb_media_base = 'https://image.tmdb.org/t/p';
-const fetch_options = {
-  method: 'GET', 
-  headers: {
-    accept: 'application/json',
-    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3MTcwMzdlNzI5ZWZlMTVmN2RiMzg0MTgyZDk5NjY3YiIsIm5iZiI6MTc1NzE1ODcxNC44OTkwMDAyLCJzdWIiOiI2OGJjMWQzYTUzODUwMTQ1MWI0ZTVhMDIiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.pdeAI0b67FCNnGHd7BFdpjphJQIJN1cfJ07Kkq8lznI'
-  }
-};
-
 export const getRatingClass = (rating) => {
   if(rating===0) {return ''};
   if(rating>=7) {
@@ -163,10 +153,6 @@ const isMissing = (collection, prop) => {
   return collection.indexOf(prop)===-1;
 };
 
-export const getPosterPath = (path, size) => {
-  return path ? (tmdb_media_base + `/${size}` + path) : null;
-};
-
 export const genres = {};
 
 const setGenres = (data) => {
@@ -256,75 +242,64 @@ setGenres([
 ]);
 
 export const api = {
+  base: 'https://api.themoviedb.org/3',
+  mediaBase: 'https://image.tmdb.org/t/p',
+  fetch_options: {
+    method: 'GET', 
+    headers: {
+      accept: 'application/json',
+      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3MTcwMzdlNzI5ZWZlMTVmN2RiMzg0MTgyZDk5NjY3YiIsIm5iZiI6MTc1NzE1ODcxNC44OTkwMDAyLCJzdWIiOiI2OGJjMWQzYTUzODUwMTQ1MWI0ZTVhMDIiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.pdeAI0b67FCNnGHd7BFdpjphJQIJN1cfJ07Kkq8lznI'
+    }
+  },
   getFilmography: async function(id) {
-    const data = await fetch(tmdb_base + `/person/${id}/movie_credits`, fetch_options);
-    const films = await data.json();
-    return films;
+    return fetch(this.base + `/person/${id}/movie_credits`, this.fetch_options).then(response => response.json());
   },
   getCredits: async function(id) {
-    const data = await fetch(tmdb_base + `/movie/${id}/credits`, fetch_options);
-    const people = await data.json();
-    return people;
+    return fetch(this.base + `/movie/${id}/credits`, this.fetch_options).then(response => response.json());
   },
-  getCategory: async function(id) {
-    const data = await fetch(tmdb_base + `/discover/movie?region=GB&sort_by=popularity.desc&with_release_type=2%7C3&with_genres=${id}`, fetch_options);
-    const films = await data.json();
-    return films;
+  getCategory: async function(id, page = '1') {
+    return fetch(this.base + `/discover/movie?with_genres=${id}&page=${page}&region=GB&sort_by=popularity.desc&with_release_type=2%7C3`, this.fetch_options).then(response => response.json());
   },
-  getNowPlaying: async function() {
-    const data = await fetch(tmdb_base + '/movie/now_playing?region=GB', fetch_options);
-    const films = await data.json();
-    return films;
+  getNowPlaying: async function(page = '1') {
+    return fetch(this.base + `/movie/now_playing?page=${page}&region=GB`, this.fetch_options).then(response => response.json());
   },
-  getComingSoon: async function() {
-    const data = await fetch(tmdb_base + '/movie/upcoming?region=GB', fetch_options);
-    const films = await data.json();
-    return films;
+  getComingSoon: async function(page = '1') {
+    return fetch(this.base + `/movie/upcoming?page=${page}&region=GB`, this.fetch_options).then(response => response.json());
   },
-  getRecommendations: async function(id) {
-    const data = await fetch(tmdb_base + `/movie/${id}/recommendations?region=GB`, fetch_options);
-    const films = await data.json();
-    return films;
+  getRecommendations: async function(id, page = '1') {
+    return fetch(this.base + `/movie/${id}/recommendations?page=${page}&region=GB`, this.fetch_options).then(response => response.json());
   },
   getGenres: async function() {
-    const data = await fetch(tmdb_base + '/genre/movie/list', fetch_options);
-    const genres = await data.json();
-    return genres;
+    return fetch(this.base + '/genre/movie/list', this.fetch_options).then(response => response.json());
   },
   getFilm: async function(id) {
-    const data = await fetch(tmdb_base + `/movie/${id}`, fetch_options);
-    const film = await data.json();
-    return film;
+    return fetch(this.base + `/movie/${id}`, this.fetch_options).then(response => response.json());
   },
   getPerson: async function(id) {
-    const data = await fetch(tmdb_base + `/person/${id}`, fetch_options);
-    const person = await data.json();
-    return person;
+    return fetch(this.base + `/person/${id}`, this.fetch_options).then(response => response.json());
   },
   search: function(query) {
     return Promise.all([
-      fetch(tmdb_base + `/search/movie?query=${query}`, fetch_options), 
-      fetch(tmdb_base + `/search/person?query=${query}`, fetch_options)
+      fetch(this.base + `/search/movie?query=${query}`, this.fetch_options), 
+      fetch(this.base + `/search/person?query=${query}`, this.fetch_options)
     ]).then(responses => {
       return Promise.all(responses.map((response) => response.json()));
     });
   },
   getFilms: async function(type, page, id) {
-    let path = '';
+    // console.log('getFilms', this);
     switch(type) {
       case 'recs':
-        path = (tmdb_base + `/movie/${id}/recommendations?page=${page}region=GB`);
-      break;
+        return this.getRecommendations(id, page);
       case 'genre':
-        path = (tmdb_base + `/discover/movie?with_genres=${id}&page=${page}&region=GB&sort_by=popularity.desc&with_release_type=2%7C3`);
-      break;
+        return this.getCategory(id, page);
       case 'playing':
-        path = (tmdb_base + `/movie/now_playing?&page=${page}&region=GB`);
-      break;
+        return this.getNowPlaying(page);
       case 'coming':
-        path = (tmdb_base + `/movie/upcoming?&page=${page}&region=GB`);
-      break;
+        return this.getComingSoon(page);
     };
-    return fetch(path, fetch_options).then(response => response.json());
+  },
+  getPosterPath: function(path, size) {
+    return path ? (this.mediaBase + `/${size}` + path) : null;
   }
 };
