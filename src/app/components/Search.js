@@ -16,7 +16,8 @@ export default function Search() {
       return;
     };
     if(cache[q]) {
-      return setList(cache[q]);
+      setList(cache[q]);
+      return;
     };
     api.search(q).then(data => {
       cache[q] = sortByProp(filterByMatch([...addProp(data[0].results, 'media_type', 'movie'), ...addProp(data[1].results, 'media_type', 'person')], q), 'popularity');
