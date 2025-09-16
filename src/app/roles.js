@@ -985,6 +985,7 @@ const roles = [
   'Settings',
   'Utility Sound',
   'Ager/Dyer',
+  'Director of Communications',
   'Tattoo Designer',
   'First Assistant Art Direction',
   'Concept Artist',
