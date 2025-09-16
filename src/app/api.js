@@ -252,36 +252,36 @@ export const api = {
     }
   },
   getFilmography: async function(id) {
-    return fetch(this.base + `/person/${id}/movie_credits`, this.fetch_options).then(response => response.json());
+    return fetch(`${this.base}/person/${id}/movie_credits`, this.fetch_options).then(response => response.json());
   },
   getCredits: async function(id) {
-    return fetch(this.base + `/movie/${id}/credits`, this.fetch_options).then(response => response.json());
+    return fetch(`${this.base}/movie/${id}/credits`, this.fetch_options).then(response => response.json());
   },
   getCategory: async function(id, page = '1') {
-    return fetch(this.base + `/discover/movie?with_genres=${id}&page=${page}&region=GB&sort_by=popularity.desc&with_release_type=2%7C3`, this.fetch_options).then(response => response.json());
+    return fetch(`${this.base}/discover/movie?with_genres=${id}&page=${page}&region=GB&sort_by=popularity.desc&with_release_type=2%7C3`, this.fetch_options).then(response => response.json());
   },
   getNowPlaying: async function(page = '1') {
-    return fetch(this.base + `/movie/now_playing?page=${page}&region=GB`, this.fetch_options).then(response => response.json());
+    return fetch(`${this.base}/movie/now_playing?page=${page}&region=GB`, this.fetch_options).then(response => response.json());
   },
   getComingSoon: async function(page = '1') {
-    return fetch(this.base + `/movie/upcoming?page=${page}&region=GB`, this.fetch_options).then(response => response.json());
+    return fetch(`${this.base}/movie/upcoming?page=${page}&region=GB`, this.fetch_options).then(response => response.json());
   },
   getRecommendations: async function(id, page = '1') {
-    return fetch(this.base + `/movie/${id}/recommendations?page=${page}&region=GB`, this.fetch_options).then(response => response.json());
+    return fetch(`${this.base}/movie/${id}/recommendations?page=${page}&region=GB`, this.fetch_options).then(response => response.json());
   },
   getGenres: async function() {
-    return fetch(this.base + '/genre/movie/list', this.fetch_options).then(response => response.json());
+    return fetch(`${this.base}/genre/movie/list`, this.fetch_options).then(response => response.json());
   },
   getFilm: async function(id) {
-    return fetch(this.base + `/movie/${id}`, this.fetch_options).then(response => response.json());
+    return fetch(`${this.base}/movie/${id}`, this.fetch_options).then(response => response.json());
   },
   getPerson: async function(id) {
-    return fetch(this.base + `/person/${id}`, this.fetch_options).then(response => response.json());
+    return fetch(`${this.base}/person/${id}`, this.fetch_options).then(response => response.json());
   },
   search: async function(query) {
     return Promise.all([
-      fetch(this.base + `/search/movie?query=${query}`, this.fetch_options), 
-      fetch(this.base + `/search/person?query=${query}`, this.fetch_options)
+      fetch(`${this.base}/search/movie?query=${query}`, this.fetch_options), 
+      fetch(`${this.base}/search/person?query=${query}`, this.fetch_options)
     ]).then(responses => {
       return Promise.all(responses.map((response) => response.json()));
     });
