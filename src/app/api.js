@@ -278,7 +278,7 @@ export const api = {
   getPerson: async function(id) {
     return fetch(this.base + `/person/${id}`, this.fetch_options).then(response => response.json());
   },
-  search: function(query) {
+  search: async function(query) {
     return Promise.all([
       fetch(this.base + `/search/movie?query=${query}`, this.fetch_options), 
       fetch(this.base + `/search/person?query=${query}`, this.fetch_options)
