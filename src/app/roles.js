@@ -433,6 +433,8 @@ const sound = [
   'Temp Sound Editor',
   'Sound Re-Recording Mixer',
   'Additional Sound Re-Recording Mixer',
+  'Sound Re-Recordist',
+  'Additional Sound Re-Recordist',
   'Sound Supervisor',
   'Sound Re-Recording Assistant',
   'Production Sound Mixer',
