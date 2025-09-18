@@ -3,7 +3,6 @@ import { api } from '@/app/api';
 
 export default async function Genres() {
   const genres = await api.getGenres();
-  // console.log(genres);
   return (
     <main>
       <div className="all-genres">
