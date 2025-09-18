@@ -8,7 +8,6 @@ export default function Films({
   credits = false,
   link = false
 }) {
-  // console.log(name, films);
   return (
     !!films.length && <div className="category">
       <div className="category-head">
