@@ -14,18 +14,18 @@ export default async function Film({
       <div className="film">
         <div className="film-head">
           <div className="film-head-top">
-            <h1>{film?.title}</h1>
-            <div className="duration">{toTime(film?.runtime)}</div>
-            <Genres genres={film?.genres} />
+            <h1>{film.title}</h1>
+            <div className="duration">{toTime(film.runtime)}</div>
+            <Genres genres={film.genres} />
           </div>
           <div className="film-head-bottom">
-            <div className={`rating ${getRatingClass(film?.vote_average ?? 0)}`}>{floorRating(film?.vote_average)}</div>
+            <div className={`rating ${getRatingClass(film.vote_average ?? 0)}`}>{floorRating(film.vote_average)}</div>
           </div>
         </div>
         <Poster path={film.poster_path} />
-        <p className="plot">{film?.overview}</p>
-        <CastAndCrew id={film?.id} />
-        <Recommendations id={film?.id} />
+        <p className="plot">{film.overview}</p>
+        <CastAndCrew id={film.id} />
+        <Recommendations id={film.id} />
       </div>
     </main>
   );
