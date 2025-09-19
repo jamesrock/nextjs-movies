@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { dedupeFilms, largest_size_map, api } from '@/app/api';
-import Poster from './Poster';
+import { Poster } from '@/app/components';
 
 export default function FilmGrid({
   id,
@@ -15,16 +15,13 @@ export default function FilmGrid({
   const [page, setPage] = useState(0);
   const [pages, setPages] = useState(0);
   const loadMore = (target) => {
-    // console.log('loadMore', target);
     api.getFilms(type, target, id).then(data => {
       setFilms(dedupeFilms([...films, ...data.results]));
       setPages(data.total_pages);
       setPage(target);
-      // console.log(data);
     }).catch(error => console.log('Error:', error));
   };
   useEffect(() => {
-    // console.log('useEffect');
     loadMore(1);
   }, []);
   return (

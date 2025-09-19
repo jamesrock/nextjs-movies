@@ -1,4 +1,4 @@
-import FilmGrid from '@/app/components/FilmGrid';
+import { FilmGrid } from '@/app/components';
 
 export default async function Playing() {
   return (

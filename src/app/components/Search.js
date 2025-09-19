@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { media_type_name, media_type_profile_path, largest_size_map, addProp, sortByProp, filterByMatch, api } from '@/app/api';
-import Poster from './Poster';
+import { Poster } from '@/app/components';
 const cache = {};
 
 export default function Search() {

@@ -1,8 +1,5 @@
 import { toTime, floorRating, getRatingClass, api } from '@/app/api';
-import Poster from '@/app/components/Poster';
-import CastAndCrew from '@/app/components/CastAndCrew';
-import Genres from '@/app/components/Genres';
-import Recommendations from '@/app/components/Recommendations';
+import { Poster, CastAndCrew, Genres, Recommendations } from '@/app/components';
 
 export default async function Film({
   params

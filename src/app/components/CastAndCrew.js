@@ -1,5 +1,5 @@
 import { dedupe, sortByPriority, api } from '@/app/api';
-import People from './People';
+import { People } from '@/app/components';
 
 export default async function CastAndCrew({
   id

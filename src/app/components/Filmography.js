@@ -1,5 +1,5 @@
 import { dedupe, api } from '@/app/api';
-import Films from './Films';
+import { Films } from '@/app/components';
 
 export default async function Filmography({
   id

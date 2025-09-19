@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { getRole, largest_size_map } from '@/app/api';
-import Poster from './Poster';
+import { Poster } from '@/app/components';
 
 export default function Films({
   films,

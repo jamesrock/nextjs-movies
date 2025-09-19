@@ -1,13 +1,11 @@
 import { api } from '@/app/api';
-import Filmography from '@/app/components/Filmography';
-import Poster from '@/app/components/Poster';
+import { Poster, Filmography } from '@/app/components';
 
 export default async function Person({
   params
 }) {
   const { id } = await params;
   const person = await api.getPerson(id);
-  // console.log(person);
   return (
     <main>
       <div className="person">

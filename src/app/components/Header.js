@@ -1,5 +1,4 @@
-import Search from './Search';
-import Navigation from './Navigation';
+import { Search, Navigation } from '@/app/components';
 
 export default function Header() {
   return (
