@@ -9,7 +9,6 @@ export default async function Film({
 }) {
   const { id } = await params;
   const film = await api.getFilm(id);
-  // console.log(film);
   return (
     <main>
       <div className="film">
