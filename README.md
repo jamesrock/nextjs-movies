@@ -10,10 +10,10 @@ All five repos can be found here on GitHub:
 
 [github.com/svelte-movies](https://github.com/jamesrock/svelte-movies)  
 [github.com/nuxt-movies](https://github.com/jamesrock/nuxt-movies)  
-[github.com/nextjs-movies](https://github.com/jamesrock/nextjs-movies)  
+[github.com/next-movies](https://github.com/jamesrock/nextjs-movies)  
 [github.com/solid-movies](https://github.com/jamesrock/solid-movies)  
 [github.com/angular-movies](https://github.com/jamesrock/angular-movies)  
 
 ### Project Summary
 
-Next is the only framework I was already familiar with. It took roughly 5 days to get a reasonable app up and running, which includes API integration and overall app design — all of which I’ll be using on subsequent projects, which will ultimately save time, making it purely about each framework going forward. I found working with Next a breeze — no issues there. 
+Next is the only framework I was already familiar with. It took roughly 5 days to get a reasonable app up and running, which includes API integration and overall app design — all of which I’ll be using on subsequent projects, ultimately saving time, making it purely about each framework going forward. Overall, I found working with Next a breeze — no complaints there.
